@@ -1,0 +1,9 @@
+<div class="center jumbotron">
+
+
+<h2><%= @visit.guest.name %></h2>
+<div>Number coming: <%= @visit.num_attendees %></div>
+<div>Starting: <%= @visit.start_date %></div>
+<div>Ending: <%= @visit.end_date %></div>
+<div>Number of days: <%= (@visit.end_date - @visit.start_date).to_i %></div>
+</div>

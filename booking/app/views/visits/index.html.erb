@@ -1,0 +1,5 @@
+<% @visits.each do |visit| %>
+  <li><%= visit.guest.name %>, <%= visit.num_attendees %> guests, starting:
+      <%= visit.start_date %>, ending: <%= visit.end_date %>
+    <%= link_to "Show", visit_path(visit) %> | <%= link_to "Delete", visit, method: :delete, data: { confirm: "Are you sure?" } %></li>
+<% end %>

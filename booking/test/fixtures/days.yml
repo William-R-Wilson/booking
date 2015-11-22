@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  breakfast: 1
+  lunch: 1
+  dinner: 1
+  dorm: 1
+  hh: 1
+  lodge: 1
+
+two:
+  breakfast: 1
+  lunch: 1
+  dinner: 1
+  dorm: 1
+  hh: 1
+  lodge: 1
