@@ -8,17 +8,20 @@ class VisitsController < ApplicationController
   def create
     @visit = Visit.new(visit_params)
     @guest_options = Guest.all.map {|g| [g.name, g.id] }
+    @visit.num_days.times { @visit.days.build }
     if @visit.save
-      redirect_to visit_path(@visit), notice: "Visit created!"
+      redirect_to edit_visit_path(@visit), notice: "Visit created!"
     else
       flash.now
       render "new"
     end
   end
 
-  def edit_days
+  def edit
     @visit = Visit.find(params[:id])
+    @days = @visit.days
   end
+
 
   def show
     @visit = Visit.find(params[:id])
@@ -38,10 +41,14 @@ class VisitsController < ApplicationController
     end
   end
 
+
+
   private
 
     def visit_params
-      params.require(:visit).permit(:guest_id, :num_attendees, :start_date, :end_date)
+      params.require(:visit).permit(:guest_id, :num_attendees,
+              :start_date, :end_date, days_attributes: [:id, :breakfast,
+                :lunch, :dinner, :dorm, :hh, :lodge])
     end
 
 end

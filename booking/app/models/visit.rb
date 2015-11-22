@@ -6,4 +6,8 @@ class Visit < ActiveRecord::Base
   validates :end_date, presence: true
   accepts_nested_attributes_for :days
 
+  def num_days
+    number_days = (end_date - start_date).to_i
+  end
+
 end
