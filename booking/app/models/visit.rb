@@ -7,7 +7,7 @@ class Visit < ActiveRecord::Base
   accepts_nested_attributes_for :days
 
   def num_days
-    number_days = (end_date - start_date).to_i
+    number_days = (end_date - start_date).to_i + 1
   end
 
 end
