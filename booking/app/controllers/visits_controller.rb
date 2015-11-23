@@ -8,7 +8,11 @@ class VisitsController < ApplicationController
   def create
     @visit = Visit.new(visit_params)
     @guest_options = Guest.all.map {|g| [g.name, g.id] }
-    @visit.num_days.times { @visit.days.build }
+    current_date = @visit.start_date
+    @visit.num_days.times do
+      @visit.days.build(date: current_date)
+      current_date += 1
+    end
     if @visit.save
       redirect_to edit_visit_path(@visit), notice: "Visit created!"
     else

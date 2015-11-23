@@ -3,8 +3,11 @@
     <%= form_for @visit do |f| %>
         <%= render "shared/error_messages", object: f.object %>
         <ul>
-        <%= f.fields_for :days do |days_form, start| %>
-          <li><%= @visit.start_date += 1 %>
+          <% @visit.days.each do |day| %>
+            <%= day.date %>
+          <% end %>
+        <%= f.fields_for :days do |days_form, date| %>
+          <li><%= date %>
             <%= days_form.label :breakfast %>
             <%= days_form.number_field :breakfast, value: @visit.num_attendees %>
 
