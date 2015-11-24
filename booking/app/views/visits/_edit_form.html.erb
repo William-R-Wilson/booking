@@ -4,6 +4,7 @@
     <% @visit.days.each do |day| %>
       <%= day.date %>
     <% end %>
+    <h2>This all needs to change</h2>
     <%= form_for @visit do |f| %>
       <%= render "shared/error_messages", object: f.object %>
 

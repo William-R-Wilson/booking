@@ -9,39 +9,51 @@
 </div>
 
 <div class = "container-fluid">
-  <div class = "row"><span class = "col-md-2"><strong>Date:</strong></span>
+<table class = "table">
+
+  <thead>
+    <th>Date:</th>
     <% @visit.days.each do |day| %>
-      <span class = "col-md-1"><strong><%= link_to day.date, edit_day_path(day) %></strong></span>
+      <th><%= link_to day.date, edit_day_path(day) %></th>
     <% end %>
-  </div>
-  <div class = "row"><span class = "col-md-2"><strong>Breakfast</strong></span>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Breakfast</td>
     <% @visit.days.each do |day| %>
-      <span class = "col-md-1"><%= day.breakfast %></span>
+      <td><%= day.breakfast %></td>
     <% end %>
-  </div>
-  <div class = "row"><span class = "col-md-2"><strong>Lunch</strong></span>
+  </tr>
+  <tr>
+    <td>Lunch</td>
     <% @visit.days.each do |day| %>
-      <span class = "col-md-1"><%= day.lunch %></span>
+      <td><%= day.lunch %></td>
     <% end %>
-  </div>
-  <div class = "row"><span class = "col-md-2"><strong>Dinner</strong></span>
+  </tr>
+  <tr>
+    <td>Dinner</td>
     <% @visit.days.each do |day| %>
-      <span class = "col-md-1"><%= day.dinner %></span>
+      <td><%= day.dinner %></td>
     <% end %>
-  </div>
-  <div class = "row"><span class = "col-md-2"><strong>Dorm</strong></span>
+  </tr>
+  <tr>
+    <td>Dorm</td>
     <% @visit.days.each do |day| %>
-      <span class = "col-md-1"><%= day.dorm %></span>
+      <td><%= day.dorm %></td>
     <% end %>
-  </div>
-  <div class = "row"><span class = "col-md-2"><strong>Horton House</strong></span>
+  </tr>
+  <tr>
+    <td>Horton House</td>
     <% @visit.days.each do |day| %>
-      <span class = "col-md-1"><%= day.hh %></span>
+      <td><%= day.hh %></td>
     <% end %>
-  </div>
-  <div class = "row"><span class = "col-md-2"><strong>Lodge</strong></span>
+  </tr>
+  <tr>
+    <td>Lodge</td>
     <% @visit.days.each do |day| %>
-      <span class = "col-md-1"><%= day.lodge %></span>
+      <td><%= day.lodge %></td>
     <% end %>
-  </div>
+  </tr>
+</tbody>
+</table>
 </div>
