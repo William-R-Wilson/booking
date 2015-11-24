@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :visits
   resources :guests
+  resources :days
 
   root "guests#new"
   # Example of regular route:

@@ -1,13 +1,15 @@
-<div class = "row">
-  <div class = "col-md-8  col-md-offset-2">
+
+<div class = "container-fluid">
+  <table class= "table-bordered">
+    <% @visit.days.each do |day| %>
+      <%= day.date %>
+    <% end %>
     <%= form_for @visit do |f| %>
-        <%= render "shared/error_messages", object: f.object %>
-        <ul>
-          <% @visit.days.each do |day| %>
-            <%= day.date %>
-          <% end %>
-        <%= f.fields_for :days do |days_form, date| %>
-          <li><%= date %>
+      <%= render "shared/error_messages", object: f.object %>
+
+      <%= f.fields_for :days do |days_form| %>
+        <span class = "form-group">
+          <span class = "row">
             <%= days_form.label :breakfast %>
             <%= days_form.number_field :breakfast, value: @visit.num_attendees %>
 
@@ -16,13 +18,10 @@
 
             <%= days_form.label :dinner %>
             <%= days_form.number_field :dinner, value: @visit.num_attendees %>
-          </li>
-          <% end %>
-        </ul>
-
-
-
+          </span>
+        </span>
+      <% end %>
+      </table>
       <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+  <% end %>
 </div>

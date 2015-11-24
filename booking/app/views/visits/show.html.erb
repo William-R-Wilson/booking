@@ -7,3 +7,41 @@
 <div>Ending: <%= @visit.end_date %></div>
 <div>Number of days: <%= @visit.num_days %></div>
 </div>
+
+<div class = "container-fluid">
+  <div class = "row"><span class = "col-md-2"><strong>Date:</strong></span>
+    <% @visit.days.each do |day| %>
+      <span class = "col-md-1"><strong><%= link_to day.date, edit_day_path(day) %></strong></span>
+    <% end %>
+  </div>
+  <div class = "row"><span class = "col-md-2"><strong>Breakfast</strong></span>
+    <% @visit.days.each do |day| %>
+      <span class = "col-md-1"><%= day.breakfast %></span>
+    <% end %>
+  </div>
+  <div class = "row"><span class = "col-md-2"><strong>Lunch</strong></span>
+    <% @visit.days.each do |day| %>
+      <span class = "col-md-1"><%= day.lunch %></span>
+    <% end %>
+  </div>
+  <div class = "row"><span class = "col-md-2"><strong>Dinner</strong></span>
+    <% @visit.days.each do |day| %>
+      <span class = "col-md-1"><%= day.dinner %></span>
+    <% end %>
+  </div>
+  <div class = "row"><span class = "col-md-2"><strong>Dorm</strong></span>
+    <% @visit.days.each do |day| %>
+      <span class = "col-md-1"><%= day.dorm %></span>
+    <% end %>
+  </div>
+  <div class = "row"><span class = "col-md-2"><strong>Horton House</strong></span>
+    <% @visit.days.each do |day| %>
+      <span class = "col-md-1"><%= day.hh %></span>
+    <% end %>
+  </div>
+  <div class = "row"><span class = "col-md-2"><strong>Lodge</strong></span>
+    <% @visit.days.each do |day| %>
+      <span class = "col-md-1"><%= day.lodge %></span>
+    <% end %>
+  </div>
+</div>
