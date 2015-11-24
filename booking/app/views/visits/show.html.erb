@@ -1,14 +1,11 @@
-<div class="center jumbotron">
-
+<div class = "container-fluid">
 
 <h2><%= @visit.guest.name %></h2>
 <div>Number coming: <%= @visit.num_attendees %></div>
-<div>Starting: <%= @visit.start_date %></div>
-<div>Ending: <%= @visit.end_date %></div>
+<div>Starting: <%= @visit.start_date %> Ending: <%= @visit.end_date %></div>
 <div>Number of days: <%= @visit.num_days %></div>
-</div>
 
-<div class = "container-fluid">
+
 <table class = "table">
 
   <thead>
@@ -16,6 +13,7 @@
     <% @visit.days.each do |day| %>
       <th><%= link_to day.date, edit_day_path(day) %></th>
     <% end %>
+    <th>Totals</th>
   </thead>
   <tbody>
   <tr>
@@ -23,36 +21,42 @@
     <% @visit.days.each do |day| %>
       <td><%= day.breakfast %></td>
     <% end %>
+    <td><strong><%= @visit.total_breakfast %></strong></td>
   </tr>
   <tr>
     <td>Lunch</td>
     <% @visit.days.each do |day| %>
       <td><%= day.lunch %></td>
     <% end %>
+    <td><strong><%= @visit.total_lunch %></strong></td>
   </tr>
   <tr>
     <td>Dinner</td>
     <% @visit.days.each do |day| %>
       <td><%= day.dinner %></td>
     <% end %>
+    <td><strong><%= @visit.total_dinner %></strong></td>
   </tr>
   <tr>
     <td>Dorm</td>
     <% @visit.days.each do |day| %>
       <td><%= day.dorm %></td>
     <% end %>
+    <td><strong><%= @visit.total_dorm %></strong></td>
   </tr>
   <tr>
     <td>Horton House</td>
     <% @visit.days.each do |day| %>
       <td><%= day.hh %></td>
     <% end %>
+  <td><strong><%= @visit.total_hh %></strong></td>
   </tr>
   <tr>
     <td>Lodge</td>
     <% @visit.days.each do |day| %>
       <td><%= day.lodge %></td>
     <% end %>
+    <td><strong><%= @visit.total_lodge %></strong></td>
   </tr>
 </tbody>
 </table>
