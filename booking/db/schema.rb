@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125043941) do
+ActiveRecord::Schema.define(version: 20151125144037) do
 
   create_table "days", force: :cascade do |t|
     t.integer  "breakfast"
@@ -43,9 +43,13 @@ ActiveRecord::Schema.define(version: 20151125043941) do
     t.integer  "num_attendees"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "guest_id"
+    t.boolean  "needs_projector"
+    t.boolean  "needs_childcare"
+    t.boolean  "needs_stafftime"
+    t.boolean  "needs_supplies"
   end
 
 end

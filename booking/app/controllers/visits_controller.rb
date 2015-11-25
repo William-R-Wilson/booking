@@ -54,9 +54,10 @@ class VisitsController < ApplicationController
   private
 
     def visit_params
-      params.require(:visit).permit(:guest_id, :num_attendees,
-              :start_date, :end_date, days_attributes: [:id, :breakfast,
-                :lunch, :dinner, :dorm, :hh, :lodge, :date])
+      params.require(:visit).permit(:guest_id, :num_attendees, :start_date,
+                    :end_date, :needs_projector, :needs_stafftime, :needs_childcare, 
+                    days_attributes: [:id, :breakfast, :lunch, :dinner, :dorm,
+                    :hh, :lodge, :date])
     end
 
 end

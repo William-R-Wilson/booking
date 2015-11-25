@@ -1,10 +1,10 @@
 
 
   <h1>Edit visit details</h1>
-<div class = "center jumbotron">
+<div class = "container-fluid">
 
 
   <h2><%= @visit.guest.name %></h2>
-  <div>From <%= @visit.start_date %> to <%= @visit.end_date %>
+  <div>From <%= @visit.start_date %> to <%= @visit.end_date %></div>
   <%= render "edit_form" %>
 </div>

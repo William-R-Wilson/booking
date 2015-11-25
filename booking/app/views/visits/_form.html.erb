@@ -1,5 +1,4 @@
-<div class = "row">
-  <div class = "col-md-4 col-md-offset-4">
+<div class = "col-md-4 center col-md-offset-4">
     <%= form_for @visit do |f| %>
           <%= render "shared/error_messages", object: f.object %>
       <div class = "form-group">
@@ -14,7 +13,15 @@
       <div class = "form-group">
         <%= f.label :end_date %><%= f.date_select :end_date, class: "form-control" %>
       </div>
+      <div class = "form-group">
+            <%= f.label "Need Projector" %><%= f.check_box :needs_projector, class: "checkbox-inline" %>
+      </div>
+      <div class = "form-group">
+          <%= f.label "Need Childcare" %><%= f.check_box :needs_childcare, class: "checkbox-inline" %>
+      </div>
+      <div class = "form-group">
+          <%= f.label "Need Staff time" %><%= f.check_box :needs_stafftime, class: "checkbox-inline" %>
+      </div>
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
-  </div>
-</div>
+</div><!-- end col-md-4 -->
