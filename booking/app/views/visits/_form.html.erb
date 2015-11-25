@@ -1,6 +1,6 @@
 <div class = "row">
   <div class = "col-md-4 col-md-offset-4">
-    <%= form_for setup_needs(@visit) do |f| %>
+    <%= form_for @visit do |f| %>
           <%= render "shared/error_messages", object: f.object %>
       <div class = "form-group">
         <%= f.label "Group:" %><%= f.select(:guest_id, @guest_options, {}, {class: "form-control"}) %>
@@ -14,11 +14,6 @@
       <div class = "form-group">
         <%= f.label :end_date %><%= f.date_select :end_date, class: "form-control" %>
       </div>
-      <%= f.fields_for :needs do |n| %>
-      <div class = "form-group">
-        <%= n.label :projector %><%= n.check_box :projector, class: "form-control" %>
-      </div>
-      <% end %>
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
   </div>

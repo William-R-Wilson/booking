@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125015338) do
+ActiveRecord::Schema.define(version: 20151125043941) do
 
   create_table "days", force: :cascade do |t|
     t.integer  "breakfast"
@@ -37,17 +37,6 @@ ActiveRecord::Schema.define(version: 20151125015338) do
     t.string   "bill_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "needs", force: :cascade do |t|
-    t.boolean  "projector"
-    t.boolean  "childcare"
-    t.boolean  "materials"
-    t.boolean  "interpretation_equipment"
-    t.boolean  "staff_time"
-    t.boolean  "supplies"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
   end
 
   create_table "visits", force: :cascade do |t|

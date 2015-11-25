@@ -8,7 +8,7 @@ class VisitsController < ApplicationController
   def create
     @visit = Visit.new(visit_params)
     @guest_options = Guest.all.map {|g| [g.name, g.id] }
-    current_date = @visit.start_date
+    current_date = @visit.start_date #should be able to extract this to the model
     attending = @visit.num_attendees
     @visit.num_days.times do
       @visit.days.build(date: current_date, breakfast: attending, lunch: attending,
