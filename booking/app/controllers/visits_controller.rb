@@ -26,7 +26,7 @@ class VisitsController < ApplicationController
   def edit
     @visit = Visit.find(params[:id])
     @days = @visit.days
-    #@day = Day.where("day_id = ?", @visit.day_id)
+    @day = Day.where("day_id = ?", @visit.day_id)
   end
 
 

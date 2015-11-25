@@ -1,0 +1,75 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  lprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  dprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  drmprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  hhprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  lgprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  facprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2: MyString
+
+two:
+  bprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  lprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  dprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  drmprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  hhprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  lgprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2,: MyString
+  facprice: 
+  precision: MyString
+  5,: MyString
+  scale: MyString
+  2: MyString

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  projector: false
+  childcare: false
+  materials: false
+  interpretation_equipment: false
+  staff_time: false
+  supplies: false
+
+two:
+  projector: false
+  childcare: false
+  materials: false
+  interpretation_equipment: false
+  staff_time: false
+  supplies: false
