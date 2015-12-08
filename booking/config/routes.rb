@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :visits
   resources :guests
   resources :days
+  resources :costing
 
   root "guests#new"
   # Example of regular route:
