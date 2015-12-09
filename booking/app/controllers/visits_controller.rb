@@ -26,14 +26,12 @@ class VisitsController < ApplicationController
   def edit
     @visit = Visit.find(params[:id])
     @days = @visit.days
-    @day = Day.where("day_id = ?", @visit.day_id)
   end
-
 
   def show
     @visit = Visit.find(params[:id])
     guest = Guest.where("guest_id = ?", @visit.guest_id)
-    @days = @visit.days
+    @days = @visit.days.order(date: :asc)
   end
 
   def index
@@ -48,14 +46,6 @@ class VisitsController < ApplicationController
       format.html { redirect_to visits_url, notice: "Visit was deleted" }
     end
   end
-
-  def find_cost
-    @visit = Visit.find(params[:id])
-    labor_hour = 15
-    supplies_plate = 7.41
-  end
-
-
 
   private
 
