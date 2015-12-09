@@ -1,16 +1,23 @@
 class VisitsController < ApplicationController
 
+  before_action :common_options, only: [:new, :update]
+  before_action :set_visit, only: [:update, :show, :destroy]
+
+  def set_visit
+    @visit = Visit.find(params[:id])
+  end
+
+  def common_options
+    @guest_options = Guest.all.map { |g| [g.name, g.id] }
+    @statuses = Visit.statuses
+  end
+
   def new
     @visit = Visit.new
-    @guest_options = Guest.all.map {|g| [g.name, g.id] }
-    @statuses = Visit.statuses
   end
 
   def create
     @visit = Visit.new(visit_params)
-    @guest_options = Guest.all.map {|g| [g.name, g.id] }
-    @statuses = Visit.statuses
-    #@status_options = @visit.status.map { |s| [s.name, s.id]}
     current_date = @visit.start_date #should be able to extract this to the model
     attending = @visit.num_attendees
     @visit.num_days.times do
@@ -26,14 +33,13 @@ class VisitsController < ApplicationController
     end
   end
 
-  def edit
-    @visit = Visit.find(params[:id])
-    @days = @visit.days
-    @statuses = Visit.statuses
-  end
+  #def edit
+  #  @visit = Visit.find(params[:id])
+  #  @days = @visit.days
+  #  @statuses = Visit.statuses
+  #end
 
   def update
-    @visit = Visit.find(params[:id])
     @statuses = Visit.statuses
     respond_to do |format|
       if @visit.update(visit_params)
@@ -45,18 +51,15 @@ class VisitsController < ApplicationController
   end
 
   def show
-    @visit = Visit.find(params[:id])
     guest = Guest.where("guest_id = ?", @visit.guest_id)
     @days = @visit.days.order(date: :asc)
   end
 
   def index
-    @visits = Visit.all
-    #guest = Guest.where("guest_id = ?", @visit.guest_id)
+    @visits = Visit.all.order(start_date: :asc)
   end
 
   def destroy
-    @visit = Visit.find(params[:id])
     @visit.destroy
     respond_to do |format|
       format.html { redirect_to visits_url, notice: "Visit was deleted" }
