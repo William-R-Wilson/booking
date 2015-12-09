@@ -1,10 +1,21 @@
 <div class = "container-fluid">
-
-<h2><%= @visit.guest.name %></h2>
-<div>Number coming: <%= @visit.num_attendees %></div>
-<div>Starting: <%= @visit.start_date %> Ending: <%= @visit.end_date %></div>
-<div>Number of days: <%= @visit.num_days %></div>
-<div>Total Invoice Price: <%= number_to_currency @visit.income %></div>
+<div class = "col-md-2">
+  <%= form_for @visit do |f| %>
+    <div class="form-group">
+      <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
+    </div>
+    <%= f.submit "Update Status", class: "btn btn-primary" %>
+  <% end %>
+</div>
+</div>
+<div class = "container-fluid">
+  <h2><%= @visit.guest.name %></h2>
+  <div>Status: <%= @visit.status %></div>
+  <div>Number coming: <%= @visit.num_attendees %></div>
+  <div>Starting: <%= @visit.start_date %> Ending: <%= @visit.end_date %></div>
+  <div>Number of days: <%= @visit.num_days %></div>
+  <div>Total Invoice Price: <%= number_to_currency @visit.income %></div>
+</div>
 
 <table class = "table">
 

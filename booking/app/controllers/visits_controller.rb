@@ -3,11 +3,14 @@ class VisitsController < ApplicationController
   def new
     @visit = Visit.new
     @guest_options = Guest.all.map {|g| [g.name, g.id] }
+    @statuses = Visit.statuses
   end
 
   def create
     @visit = Visit.new(visit_params)
     @guest_options = Guest.all.map {|g| [g.name, g.id] }
+    @statuses = Visit.statuses
+    #@status_options = @visit.status.map { |s| [s.name, s.id]}
     current_date = @visit.start_date #should be able to extract this to the model
     attending = @visit.num_attendees
     @visit.num_days.times do
@@ -26,6 +29,19 @@ class VisitsController < ApplicationController
   def edit
     @visit = Visit.find(params[:id])
     @days = @visit.days
+    @statuses = Visit.statuses
+  end
+
+  def update
+    @visit = Visit.find(params[:id])
+    @statuses = Visit.statuses
+    respond_to do |format|
+      if @visit.update(visit_params)
+        format.html { redirect_to visit_path(@visit), notice: "Status updated" }
+      else
+        format.html { redirect_to visit_path(@visit), notice: "Status not updated!" }
+      end
+    end
   end
 
   def show
@@ -51,7 +67,7 @@ class VisitsController < ApplicationController
 
     def visit_params
       params.require(:visit).permit(:guest_id, :num_attendees, :start_date,
-                    :end_date, :needs_projector, :needs_stafftime, :needs_childcare,
+                    :end_date, :status, :needs_projector, :needs_stafftime, :needs_childcare,
                     days_attributes: [:id, :breakfast, :lunch, :dinner, :dorm,
                     :hh, :lodge, :date])
     end

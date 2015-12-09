@@ -1,6 +1,9 @@
 <div class = "col-md-4 center col-md-offset-4">
     <%= form_for @visit do |f| %>
           <%= render "shared/error_messages", object: f.object %>
+      <div class="form-group">
+        <%= f.select(:status, options_for_select(@statuses.collect { |s| [s[0].humanize, s[0]]}), {}, {class: "form-control"}) %>
+      </div>
       <div class = "form-group">
         <%= f.label "Group:" %><%= f.select(:guest_id, @guest_options, {}, {class: "form-control"}) %>
       </div>

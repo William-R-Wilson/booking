@@ -5,7 +5,7 @@ class Visit < ActiveRecord::Base
   validates :start_date, presence: true
   validates :end_date, presence: true
   accepts_nested_attributes_for :days
-
+  enum status: [:tentative, :confirmed, :billed, :paid]
 
   def num_days
     number_days = (end_date - start_date).to_i + 1
