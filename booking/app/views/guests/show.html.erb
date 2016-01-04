@@ -1,2 +1,6 @@
 <div><%= @guest.name %></div>
-<div><%= link_to "plan your visit!", new_visit_path %></div>
+<div><%= @guest.bill_to %></div>
+<div><%= @guest.address %></div>
+<div><%= @guest.address2 %><div>
+<div><%= @guest.city %>, <%= @guest.state %> <%= @guest.zip %></div>
+<div><%= @guest.email %></div>

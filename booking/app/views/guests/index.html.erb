@@ -1,5 +1,10 @@
 <ul>
   <% @guests.each do |guest| %>
     <li><%= link_to guest.name, guest_path(guest) %></li>
+    <% guest.visits.each do |visit| %>
+      <ul>
+        <li><%= link_to visit.start_date, visit_path(visit) %></li>
+      </ul>
+    <% end %>
   <% end %>
 </ul>

@@ -1,5 +1,16 @@
 <div class = "container-fluid">
-<div class = "col-md-2">
+<div class="row">
+  <div class = "col-md-4">
+    <h2><%= @visit.guest.name %></h2>
+    <div><%= @visit.guest.bill_to %></div>
+    <div><%= @visit.guest.address %></div>
+    <div><%= @visit.guest.address2 %></div>
+    <div><%= @visit.guest.city %>, <%= @visit.guest.state %> <%= @visit.guest.zip %></div>
+    <div><%= @visit.guest.email %></div>
+  </div>
+  <div class="col-md-4">
+  </div>
+  <div class = "col-md-2">
   <%= form_for @visit do |f| %>
     <div class="form-group">
       <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
@@ -8,13 +19,17 @@
   <% end %>
 </div>
 </div>
-<div class = "container-fluid">
-  <h2><%= @visit.guest.name %></h2>
-  <div>Status: <%= @visit.status %></div>
-  <div>Number coming: <%= @visit.num_attendees %></div>
-  <div>Starting: <%= @visit.start_date %> Ending: <%= @visit.end_date %></div>
-  <div>Number of days: <%= @visit.num_days %></div>
-  <div>Total Invoice Price: <%= number_to_currency @visit.income %></div>
+<div class = "row spacer"></div>
+<div class="row">
+  <div class = "col-md-4">
+    <div>Status: <%= @visit.status %></div>
+    <div>Number coming: <%= @visit.num_attendees %></div>
+    <div>Starting: <%= @visit.start_date %> Ending: <%= @visit.end_date %></div>
+    <div>Number of days: <%= @visit.num_days %></div>
+    <div>Total Invoice Price: <%= number_to_currency @visit.income %></div>
+  </div>
+
+
 </div>
 
 <table class = "table">
