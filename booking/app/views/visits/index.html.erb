@@ -1,8 +1,23 @@
+<div class = "container-fluid">
+<h2>All Visits</h2>
+<table class = "table">
+  <tr>
+    <th>Guest Name</th>
+    <th>Number Attending</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th></th>
+  </tr>
 <% @visits.each do |visit| %>
-  <li><%= visit.guest.name %>, <%= visit.num_attendees %> guests, starting:
-      <%= visit.start_date %>, ending: <%= visit.end_date %>
+  <tr>
+    <td><%= visit.guest.name %></td>
+    <td><%= visit.num_attendees %></td>
+    <td><%= visit.start_date %></td>
+    <td><%= visit.end_date %></td>
+    <td>
     <%= link_to "Show", visit_path(visit) %> | <%= link_to "Delete", visit,
-        method: :delete, data: { confirm: "Are you sure?" } %> |
-        <%= link_to "Set Costs", costing_path(visit) %></li>
-
+        method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
 <% end %>
+</table>
+</div>

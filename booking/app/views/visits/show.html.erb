@@ -24,8 +24,21 @@
   <div class = "col-md-4">
     <div>Status: <%= @visit.status %></div>
     <div>Number coming: <%= @visit.num_attendees %></div>
-    <div>Starting: <%= @visit.start_date %> Ending: <%= @visit.end_date %></div>
+    <div>Starting: <%= @visit.start_date %></div>
+    <div>Ending: <%= @visit.end_date %></div>
     <div>Number of days: <%= @visit.num_days %></div>
+    <% if @visit.needs_stafftime? %>
+      <div>Needs Staff Time</div>
+    <% end %>
+    <% if @visit.needs_supplies %>
+      <div>Needs Supplies</div>
+    <% end %>
+    <% if @visit.needs_projector %>
+      <div>Needs Projector</div>
+    <% end %>
+    <% if @visit.needs_childcare %>
+      <div>Needs Childcare</div>
+    <% end %>
     <div>Total Invoice Price: <%= number_to_currency @visit.income %></div>
   </div>
 
