@@ -15,6 +15,13 @@
   <div class="col-md-12">
     <%= calendar @date do |date| %>
       <%= date.day %>
+      <% if @visit_dates[date] %>
+        <ul>
+          <% @visit_dates[date].each do |visit| %>
+            <li><%= link_to visit.guest.name, visit %>, <%= visit.status %></li>
+          <% end %>
+        </ul>
+      <% end %>
     <% end %>
   </div>
 </div>
