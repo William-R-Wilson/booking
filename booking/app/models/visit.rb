@@ -59,6 +59,14 @@ class Visit < ActiveRecord::Base
     total
   end
 
+  def total_hours
+    total = 0
+    self.days.each do |day|
+      total += day.hours
+    end
+    total
+  end
+
   def income  #this is going to need some refactoring but good enough to get cost function working
     bf = total_breakfast * 10
     lnch = total_lunch * 12

@@ -5,7 +5,7 @@
 <div>Total supplies cost:  <%= number_to_currency @supplies_plate %> per plate x <%=
       @total_meals %> = <%= number_to_currency @total_supplies_cost %></div>
 
-<div>Labor Cost:  Assuming 2 staff per day, 8 hours each:  </div>
+<div>Labor Cost:  </div>
 <div>Total hours required:  <%= @total_labor_hours %></div>
 <div>Total cost: <%= number_to_currency @total_labor_cost %>
 
@@ -15,7 +15,7 @@
 <thead>
   <th>Date:</th>
   <% @visit.days.each do |day| %>
-    <th><%= link_to day.date, edit_costing_path(day) %></th>
+    <th><%= link_to day.date, edit_hours_path(day) %></th>
   <% end %>
   <th>Totals</th>
   <th>Price</th>

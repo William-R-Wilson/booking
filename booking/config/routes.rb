@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   resources :visits
   resources :guests
   resources :days
-  #resources :costing
-  get 'costing/:id' => 'costing#show'
-  get 'costing/:id/edit(.:format)' => 'costing#edit', as: :edit_costing
-  patch 'costing/:id(.:format)' => 'costing#update'
 
-  #resource :costing, only: [:show, :edit, :update], controller: :costing
+  get 'costing/:id' => 'costing#show', as: :costing
+  get 'costing/:id/edit(.:format)' => 'costing#edit', as: :edit_hours
+  patch 'costing/:id(.:format)' => 'costing#update', as: :update_hours
+  post 'costing/:id(.:format)' => 'costing#create', as: :create_hours
+
   resource :calendar, only: [:show], controller: :calendar
 
   root "guests#new"
