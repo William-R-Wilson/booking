@@ -1,0 +1,77 @@
+<table class = "table">
+
+  <thead>
+    <th>Date:</th>
+    <% @visit.days.each do |day| %>
+      <th><%= link_to day.date, edit_day_path(day) %></th>
+    <% end %>
+    <th>Totals</th>
+    <th>Price</th>
+    <th>Total Price</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Breakfast</td>
+      <% @visit.days.each do |day| %>
+        <td><%= day.breakfast %></td>
+      <% end %>
+      <td><strong><%= @visit.total_breakfast %></strong></td>
+      <td>$10.00</td>
+      <td><%= number_to_currency @visit.total_breakfast * 10 %></td>
+    </tr>
+    <tr>
+      <td>Lunch</td>
+      <% @visit.days.each do |day| %>
+        <td><%= day.lunch %></td>
+      <% end %>
+      <td><strong><%= @visit.total_lunch %></strong></td>
+      <td>$12.00</td>
+      <td><%= number_to_currency @visit.total_lunch * 12 %></td>
+    </tr>
+    <tr>
+      <td>Dinner</td>
+      <% @visit.days.each do |day| %>
+        <td><%= day.dinner %></td>
+      <% end %>
+      <td><strong><%= @visit.total_dinner %></strong></td>
+      <td>$14.00</td>
+      <td><%= number_to_currency @visit.total_dinner * 14 %></td>
+    </tr>
+    <tr>
+      <td>Dorm</td>
+      <% @visit.days.each do |day| %>
+        <td><%= day.dorm %></td>
+      <% end %>
+      <td><strong><%= @visit.total_dorm %></strong></td>
+      <td>$45.00</td>
+      <td><%= number_to_currency @visit.total_dorm * 45 %></td>
+    </tr>
+    <tr>
+      <td>Horton House</td>
+      <% @visit.days.each do |day| %>
+        <td><%= day.hh %></td>
+      <% end %>
+    <td><strong><%= @visit.total_hh %></strong></td>
+    <td>$60.00</td>
+    <td><%= number_to_currency @visit.total_hh * 60 %></td>
+    </tr>
+    <tr>
+      <td>Lodge</td>
+      <% @visit.days.each do |day| %>
+        <td><%= day.lodge %></td>
+      <% end %>
+      <td><strong><%= @visit.total_lodge %></strong></td>
+      <td>$60.00</td>
+      <td><%= number_to_currency @visit.total_lodge * 60 %></td>
+    </tr>
+    <tr>
+      <td>Facility Rental Fee (charged each day)</td>
+      <% @visit.days.each do |day| %>
+        <td>$150.00</td>
+      <% end %>
+        <td><%= @visit.num_days %></td>
+        <td></td>
+      <td><%= number_to_currency @visit.num_days * 150 %></td>
+    </tr>
+  </tbody>
+</table>

@@ -9,3 +9,5 @@
 <div>Total cost: <%= number_to_currency @total_labor_cost %>
 
 <div>Remaining:  <%= number_to_currency(@visit.income - @total_supplies_cost - @total_labor_cost) %></div>
+
+<%= render "shared/days_table" %>
