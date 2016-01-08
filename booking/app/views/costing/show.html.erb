@@ -1,4 +1,5 @@
-<h2><%= @visit.guest.name %></h2>
+<h2>Costs</h2>
+<h3><%= @visit.guest.name %></h3>
 <div>Total income for this visit: <%= number_to_currency @visit.income %></div>
 
 <div>Total supplies cost:  <%= number_to_currency @supplies_plate %> per plate x <%=
@@ -10,4 +11,16 @@
 
 <div>Remaining:  <%= number_to_currency(@visit.income - @total_supplies_cost - @total_labor_cost) %></div>
 
-<%= render "shared/days_table" %>
+<table class = "table">
+<thead>
+  <th>Date:</th>
+  <% @visit.days.each do |day| %>
+    <th><%= link_to day.date, edit_costing_path(day) %></th>
+  <% end %>
+  <th>Totals</th>
+  <th>Price</th>
+  <th>Total Price</th>
+</thead>
+
+<%= render "shared/days_table_body" %>
+</table>

@@ -45,6 +45,18 @@
 
 </div>
 
-<%= render "shared/days_table" %>
+<table class = "table">
 
+  <thead>
+    <th>Date:</th>
+    <% @visit.days.each do |day| %>
+      <th><%= link_to day.date, edit_day_path(day) %></th>
+    <% end %>
+    <th>Totals</th>
+    <th>Price</th>
+    <th>Total Price</th>
+  </thead>
+
+<%= render "shared/days_table_body" %>
+</table>
 </div> <!-- close container -->

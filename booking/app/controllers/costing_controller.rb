@@ -10,4 +10,26 @@ class CostingController < ApplicationController
     @total_supplies_cost = @total_meals * @supplies_plate
   end
 
+  def edit
+    @day = Day.find(params[:id])
+  end
+
+  def update
+    @day = Day.find(params[:id])
+    visit = @day.visit_id
+    respond_to do |format|
+      if @day.update(day_params)
+        format.html { redirect_to costing_path(visit), notice: "Hours added for #{@day.date}"}
+      else
+        format.html {render :edit }
+      end
+    end
+  end
+
+    private
+
+      def day_params
+        params.require(:day).permit(:id, :visit_id, :hours)
+      end
+
 end
