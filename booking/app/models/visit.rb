@@ -1,5 +1,6 @@
 class Visit < ActiveRecord::Base
   belongs_to :guest
+  has_one :price
   has_many :days, dependent: :destroy
   validates :num_attendees, presence: true, numericality: {less_than: 101 }
   validates :start_date, presence: true
