@@ -6,6 +6,7 @@ class Day < ActiveRecord::Base
 
   def defaults
     self.hours ||= 24
+    self.waive_facility_rental ||= false
   end
 
 

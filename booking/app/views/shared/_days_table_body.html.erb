@@ -5,62 +5,66 @@
       <% @visit.days.each do |day| %>
         <td><%= day.breakfast %></td>
       <% end %>
-      <td><strong><%= @visit.total_breakfast %></strong></td>
+      <td><strong><%= @visit.breakfast_count %></strong></td>
       <td>$10.00</td>
-      <td><%= number_to_currency @visit.total_breakfast * 10 %></td>
+      <td><%= number_to_currency @visit.bf_income %></td>
     </tr>
     <tr>
       <td>Lunch</td>
       <% @visit.days.each do |day| %>
         <td><%= day.lunch %></td>
       <% end %>
-      <td><strong><%= @visit.total_lunch %></strong></td>
+      <td><strong><%= @visit.lunch_count %></strong></td>
       <td>$12.00</td>
-      <td><%= number_to_currency @visit.total_lunch * 12 %></td>
+      <td><%= number_to_currency @visit.lunch_income %></td>
     </tr>
     <tr>
       <td>Dinner</td>
       <% @visit.days.each do |day| %>
         <td><%= day.dinner %></td>
       <% end %>
-      <td><strong><%= @visit.total_dinner %></strong></td>
+      <td><strong><%= @visit.dinner_count %></strong></td>
       <td>$14.00</td>
-      <td><%= number_to_currency @visit.total_dinner * 14 %></td>
+      <td><%= number_to_currency @visit.din_income %></td>
     </tr>
     <tr>
       <td>Dorm</td>
       <% @visit.days.each do |day| %>
         <td><%= day.dorm %></td>
       <% end %>
-      <td><strong><%= @visit.total_dorm %></strong></td>
+      <td><strong><%= @visit.dorm_count %></strong></td>
       <td>$45.00</td>
-      <td><%= number_to_currency @visit.total_dorm * 45 %></td>
+      <td><%= number_to_currency @visit.dorm_income %></td>
     </tr>
     <tr>
       <td>Horton House</td>
       <% @visit.days.each do |day| %>
         <td><%= day.hh %></td>
       <% end %>
-    <td><strong><%= @visit.total_hh %></strong></td>
+    <td><strong><%= @visit.hh_count %></strong></td>
     <td>$60.00</td>
-    <td><%= number_to_currency @visit.total_hh * 60 %></td>
+    <td><%= number_to_currency @visit.hh_income %></td>
     </tr>
     <tr>
       <td>Lodge</td>
       <% @visit.days.each do |day| %>
         <td><%= day.lodge %></td>
       <% end %>
-      <td><strong><%= @visit.total_lodge %></strong></td>
+      <td><strong><%= @visit.lodge_count %></strong></td>
       <td>$60.00</td>
-      <td><%= number_to_currency @visit.total_lodge * 60 %></td>
+      <td><%= number_to_currency @visit.lodge_income %></td>
     </tr>
     <tr>
       <td>Facility Rental Fee (charged each day)</td>
       <% @visit.days.each do |day| %>
-        <td>$150.00</td>
+        <% if day.waive_facility_rental? %>
+          <td>Waived</td>
+        <% else %>
+          <td>$150</td>
+        <% end %>
       <% end %>
         <td><%= @visit.num_days %></td>
         <td></td>
-      <td><%= number_to_currency @visit.num_days * 150 %></td>
+      <td><%= number_to_currency @visit.fac_income %></td>
     </tr>
   </tbody>

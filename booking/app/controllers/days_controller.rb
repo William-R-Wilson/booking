@@ -27,7 +27,7 @@ class DaysController < ApplicationController
 
     def day_params
       params.require(:day).permit(:id, :visit_id, :breakfast,
-                  :lunch, :dinner, :dorm, :hh, :lodge, :date)
+                  :lunch, :dinner, :dorm, :hh, :lodge, :date, :waive_facility_rental)
     end
 
 end
