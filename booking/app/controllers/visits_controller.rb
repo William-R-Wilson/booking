@@ -1,36 +1,25 @@
 class VisitsController < ApplicationController
 
-  before_action :common_options, only: [:new, :update, :edit]
-  before_action :set_visit, only: [:update, :show, :destroy, :edit]
+  #before_action :set_visit, only: [:update, :show, :destroy, :edit]
 
-  def set_visit
-    @visit = Visit.find(params[:id])
-  end
+  #def set_visit
+  #  @visit = Visit.find(params[:id])
+  #end
 
-  def common_options
+  def new
+    @visit = Visit.new
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
     @statuses = Visit.statuses
   end
 
-  def new
-    @visit = Visit.new
-  end
-
   def create
     @visit = Visit.new(visit_params)
-    @visit.price = Price.new(visit_id: @visit.id)
-    current_date = @visit.start_date #should be able to extract this to the model
-    attending = @visit.num_attendees
-    @visit.num_days.times do
-      @visit.days.build(date: current_date, breakfast: attending, lunch: attending,
-                      dinner: attending, dorm: attending, hh: 0, lodge: 0)
-      current_date += 1
-    end
+    createDays(@visit)
     if @visit.save
       @visit.price.save
       redirect_to visit_path(@visit), notice: "Visit for #{@visit.guest.name} created!  Pricing id: #{@visit.price.id} created"
     else
-      flash.now
+      flash.now  #?
       render "new"
     end
   end
@@ -38,6 +27,8 @@ class VisitsController < ApplicationController
   #def edit
   #  @visit = Visit.find(params[:id])
   #  @days = @visit.days
+  #  @guest_options = Guest.all.map { |g| [g.name, g.id] }
+
   #  @statuses = Visit.statuses
   #  guest = Guest.where("guest_id = ?", @visit.guest_id)
   #end
@@ -45,6 +36,7 @@ class VisitsController < ApplicationController
   def update
     @visit = Visit.find(params[:id])
     @statuses = Visit.statuses
+    @guest_options = Guest.all.map { |g| [g.name, g.id] }
     #the code block below doesn't capture the new start_date, so it just rebuilds the
     #days using the original start_date.
 
@@ -66,6 +58,7 @@ class VisitsController < ApplicationController
   end
 
   def show
+    @visit = Visit.find(params[:id])
     guest = Guest.where("guest_id = ?", @visit.guest_id)
     @days = @visit.days
   end
@@ -75,6 +68,7 @@ class VisitsController < ApplicationController
   end
 
   def destroy
+    @visit = Visit.find(params[:id])
     @visit.destroy
     respond_to do |format|
       format.html { redirect_to visits_url, notice: "Visit was deleted" }
@@ -90,4 +84,13 @@ class VisitsController < ApplicationController
                     :hh, :lodge, :date, :waive_facility_rental])
     end
 
+    def createDays(visit)
+      current_date = visit.start_date #should be able to extract this to the model
+      attending = visit.num_attendees
+      visit.num_days.times do
+        visit.days.build(date: current_date, breakfast: attending, lunch: attending,
+                        dinner: attending, dorm: attending, hh: 0, lodge: 0)
+        current_date += 1
+      end
+    end
 end
