@@ -1,6 +1,6 @@
 class Visit < ActiveRecord::Base
   belongs_to :guest
-  has_one :price
+  belongs_to :price
   has_many :days, dependent: :destroy
   validates :num_attendees, presence: true, numericality: {less_than: 101 }
   validates :start_date, presence: true
@@ -10,9 +10,9 @@ class Visit < ActiveRecord::Base
   after_initialize :init_price
 
   def init_price #is this redundant in the controller?
-    if self.price == nil
-      p = Price.new(visit_id: self.id)
-      p.save
+    if self.price_id == nil
+      self.price_id = 44
+      puts "Added price ID"
     end
   end
 
@@ -110,7 +110,7 @@ class Visit < ActiveRecord::Base
     total #need to add a field for meeting days, groups won't be meeting every day of the visit
   end                   #also need to add a way to reserve different meeting spaces
 
-  def income  #this is going to need some refactoring but good enough to get cost function working
+  def income
     bf_income + lunch_income + din_income + dorm_income + hh_income + lodge_income + fac_income
   end
 

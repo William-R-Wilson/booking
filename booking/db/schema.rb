@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109164052) do
+ActiveRecord::Schema.define(version: 20160110151718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20160109164052) do
     t.decimal "horton"
     t.decimal "lodge"
     t.decimal "rentalfee"
-    t.integer "visit_id"
   end
 
   create_table "visits", force: :cascade do |t|
@@ -67,6 +66,10 @@ ActiveRecord::Schema.define(version: 20160109164052) do
     t.boolean  "needs_stafftime"
     t.boolean  "needs_supplies"
     t.integer  "status"
+    t.integer  "price_id"
   end
 
+  add_index "visits", ["price_id"], name: "index_visits_on_price_id", using: :btree
+
+  add_foreign_key "visits", "prices"
 end

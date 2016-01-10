@@ -1,7 +1,7 @@
 class VisitsController < ApplicationController
 
-  before_action :common_options, only: [:new, :update]
-  before_action :set_visit, only: [:update, :show, :destroy]
+  before_action :common_options, only: [:new, :update, :edit]
+  before_action :set_visit, only: [:update, :show, :destroy, :edit]
 
   def set_visit
     @visit = Visit.find(params[:id])
@@ -39,22 +39,35 @@ class VisitsController < ApplicationController
   #  @visit = Visit.find(params[:id])
   #  @days = @visit.days
   #  @statuses = Visit.statuses
+  #  guest = Guest.where("guest_id = ?", @visit.guest_id)
   #end
 
   def update
+    @visit = Visit.find(params[:id])
     @statuses = Visit.statuses
+    #the code block below doesn't capture the new start_date, so it just rebuilds the
+    #days using the original start_date.
+
+    #current_date = @visit.start_date #should be able to extract this to the model
+    #attending = @visit.num_attendees
+    #@visit.days.destroy_all
+    #@visit.num_days.times do
+    #  @visit.days.build(date: current_date, breakfast: attending, lunch: attending,
+    #                  dinner: attending, dorm: attending, hh: 0, lodge: 0)
+    #  current_date += 1
+    #end
     respond_to do |format|
       if @visit.update(visit_params)
-        format.html { redirect_to visit_path(@visit), notice: "Status updated" }
+        format.html { redirect_to visit_path(@visit), notice: "Visit updated" }
       else
-        format.html { redirect_to visit_path(@visit), notice: "Status not updated!" }
+        format.html { redirect_to visit_path(@visit), notice: "Visit not updated!" }
       end
     end
   end
 
   def show
     guest = Guest.where("guest_id = ?", @visit.guest_id)
-    @days = @visit.days.order(date: :asc)
+    @days = @visit.days
   end
 
   def index

@@ -1,8 +1,6 @@
 class Price < ActiveRecord::Base
-  #created but not tied in to any other code at this point
-  #need to figure out how to add to existing visits without breaking anything
 
-  belongs_to :visit
+  has_many :visits
   after_initialize :init
 
   def init
