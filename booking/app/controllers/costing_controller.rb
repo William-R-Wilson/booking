@@ -19,8 +19,10 @@ class CostingController < ApplicationController
     visit = @edit_hours.visit_id
     respond_to do |format|
       if @edit_hours.update(costing_params)
-        format.html { redirect_to costing_path(visit), notice: "Hours added for #{@edit_hours.date}" }
+        flash[:success] = "Hours updated for #{@edit_hours.date}"
+        format.html { redirect_to costing_path(visit) }
       else
+        flash[:warning] = "Failed to update hours"
         format.html {render :edit }
       end
     end
@@ -31,8 +33,10 @@ class CostingController < ApplicationController
     visit = @new_hours.visit_id
     respond_to do |format|
       if @new_hours.save(costing_params)
-        format.html { redirect_to costing_path(visit), notice: "Hours added for #{@new_hours.date}" }
+        flash[:success] =  "Hours updated for #{@new_hours.date}"
+        format.html { redirect_to costing_path(visit) }
       else
+        flash[:warning] = "Failed to update hours"
         format.html {render :edit }
       end
     end

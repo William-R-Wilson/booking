@@ -1,11 +1,5 @@
 class VisitsController < ApplicationController
 
-  #before_action :set_visit, only: [:update, :show, :destroy, :edit]
-
-  #def set_visit
-  #  @visit = Visit.find(params[:id])
-  #end
-
   def new
     @visit = Visit.new
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
@@ -17,9 +11,10 @@ class VisitsController < ApplicationController
     createDays(@visit)
     if @visit.save
       @visit.init_price
-      redirect_to visit_path(@visit), notice: "Visit for #{@visit.guest.name} created!  Pricing id: #{@visit.price.id} created"
+      flash[:success] = "Visit for #{@visit.guest.name} created!"
+      redirect_to visit_path(@visit)
     else
-      flash.now  #?
+      flash[:warning] = "Failed to create visit"
       render "new"
     end
   end
@@ -52,9 +47,11 @@ class VisitsController < ApplicationController
     #end
     respond_to do |format|
       if @visit.update(visit_params)
-        format.html { redirect_to visit_path(@visit), notice: "Visit updated" }
+        flash[:success] = "Visit updated for #{@visit.guest.name}"
+        format.html { redirect_to visit_path(@visit) }
       else
-        format.html { redirect_to visit_path(@visit), notice: "Visit not updated!" }
+        flash[:warning] = "Visit for #{@visit.guest.name}not updated"
+        format.html { redirect_to visit_path(@visit) }
       end
     end
   end
@@ -73,7 +70,8 @@ class VisitsController < ApplicationController
     @visit = Visit.find(params[:id])
     @visit.destroy
     respond_to do |format|
-      format.html { redirect_to visits_url, notice: "Visit was deleted" }
+      flash[:warning] = "Visit for #{@visit.guest.name} was deleted"
+      format.html { redirect_to visits_url }
     end
   end
 

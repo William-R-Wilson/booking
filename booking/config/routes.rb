@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :visits
   resources :guests
   resources :days
+  resources :employees
+  resources :schedules
 
   get 'costing/:id' => 'costing#show', as: :costing
   get 'costing/:id/edit(.:format)' => 'costing#edit', as: :edit_hours
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   resource :calendar, only: [:show], controller: :calendar
 
   root "guests#new"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

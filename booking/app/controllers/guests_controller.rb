@@ -16,8 +16,10 @@ class GuestsController < ApplicationController
   def create
     @guest = Guest.new(guest_params)
     if @guest.save
+      flash[:success] = "Added new guest #{@guest.name}"
       redirect_to new_visit_path
     else
+      flash[:warning] = "Failed to add guest"
       render "new"
     end
   end

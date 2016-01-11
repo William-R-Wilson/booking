@@ -11,8 +11,10 @@ class DaysController < ApplicationController
     visit = @day.visit_id
     respond_to do |format|
       if @day.update(day_params)
-        format.html { redirect_to visit_path(visit), notice: "Day was successfully updated" }
+        flash[:success] = "Details for #{@day.date} successfully updated"
+        format.html { redirect_to visit_path(visit) }
       else
+        flash[:warning] = "Day failed to update"
         format.html { render :edit }
       end
     end
