@@ -9,9 +9,9 @@ class Visit < ActiveRecord::Base
   enum status: [:tentative, :confirmed, :billed, :paid]
   after_initialize :init_price
 
-  def init_price #is this redundant in the controller?
+  def init_price
     if self.price_id == nil
-      self.price_id = 44
+      self.price_id = Price.first.id
       puts "Added price ID"
     end
   end

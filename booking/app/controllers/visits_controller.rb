@@ -16,7 +16,7 @@ class VisitsController < ApplicationController
     @visit = Visit.new(visit_params)
     createDays(@visit)
     if @visit.save
-      @visit.price.save
+      @visit.init_price
       redirect_to visit_path(@visit), notice: "Visit for #{@visit.guest.name} created!  Pricing id: #{@visit.price.id} created"
     else
       flash.now  #?
@@ -39,6 +39,8 @@ class VisitsController < ApplicationController
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
     #the code block below doesn't capture the new start_date, so it just rebuilds the
     #days using the original start_date.
+
+    #try to capture new start day with Visit.find(params[:start_date]) and see if that works
 
     #current_date = @visit.start_date #should be able to extract this to the model
     #attending = @visit.num_attendees

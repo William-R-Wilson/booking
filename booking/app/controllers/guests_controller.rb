@@ -1,5 +1,5 @@
 class GuestsController < ApplicationController
-  before_action :common_variables
+  before_action :common_variables, only: [:new, :edit, :create]
 
 
   def common_variables
