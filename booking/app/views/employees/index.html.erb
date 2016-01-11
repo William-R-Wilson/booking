@@ -1,5 +1,12 @@
-<ul>
-  <% @employees.each do |e| %>
-    <li><%= e.full_name %></li>
-  <% end %>
-</ul>
+<div class = "container-fluid">
+  <h1>All Employees</h1>
+    <% @employees.each do |employee| %>
+      <div class = "row">
+        <div class = "col-md-4">
+          <%= employee.full_name %> |
+            <%= link_to "Edit", edit_employee_path(employee) %> |
+            <%= link_to "Delete", employee, method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      </div>
+    <% end %>
+</div>

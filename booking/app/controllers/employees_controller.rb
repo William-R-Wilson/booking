@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
       flash[:success] = "Employee #{@employee.full_name} created"
       redirect_to employee_path(@employee)
     else
-      flash[:alert] = "Failed to create employee"
+      flash[:warning] = "Failed to create employee"
       render "new"
     end
   end
@@ -23,11 +23,28 @@ class EmployeesController < ApplicationController
     @employees = Employee.all.order(last_name: :asc)
   end
 
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    @employee = Employee.find(params[:id])
+    respond_to do |format|
+      if @employee.update(employee_params)
+        flash[:success] = "Employee #{@employee.full_name} updated"
+        format.html { redirect_to employee_path(@employee) }
+      else
+        flash[:warning] = "Employee not updated"
+        format.html { redirect_to edit_employee_path(@employee) }
+      end
+    end
+  end
+
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy
     respond_to do |format|
-      flash[:notice] = "Employee #{@employee.full_name} deleted"
+      flash[:warning] = "Employee #{@employee.full_name} deleted"
       format.html { redirect_to employees_url }
     end
   end

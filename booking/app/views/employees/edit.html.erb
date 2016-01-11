@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-  <h1>Add Employee</h1>
+  <h1>Edit Employee <%= "#{@employee.full_name}" %></h1>
     <div class = "col-md-3 col-md-offset-4">
       <%= form_for @employee, class: "form-horizontal center" do |f| %>
         <%= render "shared/error_messages", object: f.object %>
