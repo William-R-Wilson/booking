@@ -9,13 +9,20 @@ Rails.application.routes.draw do
   resources :guests
   resources :days
   resources :employees
-  resources :schedules
+  resources :schedules, except: [:new]
+
+  get 'schedule/new/:employee_id/:day_id' => 'schedules#new', as: :new_schedule
+  #get 'schedule/:id' => 'schedules#show', as: :schedule
+  #get 'schedules' => 'schedules#index', as: :schedules
+  #post 'schedules/(.:format)' => 'schedules#create', as: :create_schedule
+  #delete 'schedule/:id' => 'schedules#destroy', as: :delete_schedule
+  #get 'schedule/:id/edit(.:format)' => 'schedule#edit', as: :edit_schedule
+  #patch 'schedule/:id(.:format)' => 'schedule#update', as: :update_schedule
 
   get 'costing/:id' => 'costing#show', as: :costing
   get 'costing/:id/edit(.:format)' => 'costing#edit', as: :edit_hours
   patch 'costing/:id(.:format)' => 'costing#update', as: :update_hours
   post 'costing/:id(.:format)' => 'costing#create', as: :create_hours
-
   resource :calendar, only: [:show], controller: :calendar
 
   root "guests#new"

@@ -8,6 +8,7 @@ class Visit < ActiveRecord::Base
   accepts_nested_attributes_for :days
   enum status: [:tentative, :confirmed, :billed, :paid]
   after_initialize :init_price
+  default_scope { order(start_date: :asc) }
 
   def init_price
     if self.price_id == nil
@@ -109,6 +110,19 @@ class Visit < ActiveRecord::Base
     end
     total #need to add a field for meeting days, groups won't be meeting every day of the visit
   end                   #also need to add a way to reserve different meeting spaces
+
+
+#this is commented out for now, was trying to move it from controller, not sure
+# why it wasn't working
+#  def createDays
+#    current_date = self.start_date #should be able to extract this to the model
+#    attending = self.num_attendees
+#    self.num_days.times do
+#      self.days.build(date: current_date, breakfast: attending, lunch: attending,
+#                      dinner: attending, dorm: attending, hh: 0, lodge: 0)
+#      current_date += 1
+#    end
+#  end
 
   def income
     bf_income + lunch_income + din_income + dorm_income + hh_income + lodge_income + fac_income

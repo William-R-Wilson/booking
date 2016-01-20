@@ -1,9 +1,51 @@
 <div class = "container fluid">
-  <h2><%= @edit_hours.date %></h2>
-  <%= form_for @edit_hours, url: :costing, html: {class: "form-horizontal center", method: :patch} do |f| %>
-    <div class = "form-group">
-      <%= f.label :hours, class: "control-label" %>
-      <%= f.number_field :hours, class: "form-control" %>
-    </div>
-    <%= f.submit "Submit", class: "btn btn-primary" %>
-  <% end %>
+  <div class = "row">
+  <h3>Scheduled employees for <%= @day.date %></h3>
+  <div class = "col-md-4">
+    <table class = "table-condensed">
+      <thead>
+        <tr><th>Name</th><th>Hours</th><th></th></tr>
+      </thead>
+      <tbody>
+        <% @schedules.each do |s| %>
+          <tr><td><%= s.employee.full_name %></td>
+            <td><%= s.hours %></td>
+            <td><%= link_to "Edit", edit_schedule_path(s), class: "btn btn-warning btn-xs" %></td>
+            <td><%= button_to "Delete", s, method: :delete, date: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class = "col-md-4"></div>
+  <div class = "col-md-4">
+    <table class = "table-condensed">
+      <thead>
+        <tr><th>Meal</th><th>Count</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Breakfast: </td><td><%= @day.breakfast %></td></tr>
+        <tr><td>Lunch: </td><td><%= @day.lunch %></td></tr>
+        <tr><td>Dinner: </td><td><%= @day.dinner %></td></tr>
+        <tr><td>Dorm: </td><td><%= @day.dorm %></td></tr>
+        <tr><td>Lodge: </td><td><%= @day.lodge %></td></tr>
+        <tr><td>Horton House: </td><td><%= @day.hh %></td></tr>
+      </tbody>
+    </table>
+</div>
+</div>
+
+<div class = "row">
+  <div class = "col-md-4">
+    <h3>Add a schedule for <%= @day.date %></h3>
+    <% @employees.each do |e| %>
+      <div><%= link_to e.full_name, new_schedule_path(e, @day.id) %></div>
+    <% end %>
+  </div>
+</div>
+<div class = "row"><br />
+</div>
+<div class = "row">
+  <div><%= link_to "Return to Visit", costing_path(@day.visit) %></div>
+</div>
+</div>

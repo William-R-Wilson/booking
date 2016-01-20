@@ -18,7 +18,7 @@
       <% if @visit_dates[date] %>
         <ul>
           <% @visit_dates[date].each do |visit| %>
-            <li><%= link_to visit.guest.name, visit %>, <%= visit.status %></li>
+            <li><%= link_to visit.guest.name, visit %></li>
           <% end %>
         </ul>
       <% end %>

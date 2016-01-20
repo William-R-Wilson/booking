@@ -3,24 +3,30 @@ class CostingController < ApplicationController
   def show
     @visit = Visit.find(params[:id])
     @labor_hour = 15
-    @total_labor_hours = @visit.hours_count #2 staff per day, 8 hour shifts each
+    @total_labor_hours = @visit.hours_count
     @total_labor_cost = @total_labor_hours * @labor_hour
     @supplies_plate = 7.41
     @total_meals = @visit.breakfast_count + @visit.lunch_count + @visit.dinner_count
     @total_supplies_cost = @total_meals * @supplies_plate
+    @vacation_accrual = @total_labor_cost * 0.1
+    @payroll_taxes = @total_labor_cost * 0.0765
+    @total_payroll_cost = @total_labor_cost + @vacation_accrual + @payroll_taxes
+    @cost_total = @total_payroll_cost + @total_supplies_cost
   end
 
   def edit
-    @edit_hours = Day.find(params[:id])
+    @day = Day.find(params[:id])
+    @employees = Employee.all
+    @schedules = Schedule.where(day_id: @day.id)
   end
 
-  def update
-    @edit_hours = Day.find(params[:id])
-    visit = @edit_hours.visit_id
+  def update # this method has been made useless by adding schedules. 
+    @day = Day.find(params[:id])
+    visit = @day.visit_id
     respond_to do |format|
-      if @edit_hours.update(costing_params)
-        flash[:success] = "Hours updated for #{@edit_hours.date}"
-        format.html { redirect_to costing_path(visit) }
+      if @day.update(costing_params)
+        flash[:success] = "Hours updated for #{@day.date}"
+        format.html { redirect_to edit_hours_path(@day) }
       else
         flash[:warning] = "Failed to update hours"
         format.html {render :edit }
@@ -28,13 +34,13 @@ class CostingController < ApplicationController
     end
   end
 
-  def create
-    @new_hours = Day.find(params[:id])
-    visit = @new_hours.visit_id
+  def create  # this method has been made useless by adding schedules.
+    @day = Day.find(params[:id])
+    visit = @day.visit_id
     respond_to do |format|
-      if @new_hours.save(costing_params)
-        flash[:success] =  "Hours updated for #{@new_hours.date}"
-        format.html { redirect_to costing_path(visit) }
+      if @day.save(costing_params)
+        flash[:success] =  "Hours updated for #{@day.date}"
+        format.html { redirect_to edit_hours_path(@day) }
       else
         flash[:warning] = "Failed to update hours"
         format.html {render :edit }

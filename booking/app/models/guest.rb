@@ -9,5 +9,6 @@ class Guest < ActiveRecord::Base
   validates :address, presence: true
   validates :city, presence: true
   validates :zip, presence: true, numericality: { only_integer: true }, length: { is: 5}
+  default_scope { order(name: :asc)}
 
 end

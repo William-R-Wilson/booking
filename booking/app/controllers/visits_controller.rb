@@ -10,7 +10,7 @@ class VisitsController < ApplicationController
     @visit = Visit.new(visit_params)
     createDays(@visit)
     if @visit.save
-      @visit.init_price
+      #@visit.init_price
       flash[:success] = "Visit for #{@visit.guest.name} created!"
       redirect_to visit_path(@visit)
     else
@@ -88,9 +88,11 @@ class VisitsController < ApplicationController
       current_date = visit.start_date #should be able to extract this to the model
       attending = visit.num_attendees
       visit.num_days.times do
-        visit.days.build(date: current_date, breakfast: attending, lunch: attending,
+      visit.days.build(date: current_date, breakfast: attending, lunch: attending,
                         dinner: attending, dorm: attending, hh: 0, lodge: 0)
         current_date += 1
       end
     end
+
+
 end

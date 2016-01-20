@@ -6,9 +6,20 @@ class Day < ActiveRecord::Base
   after_initialize :defaults
 
   def defaults
-    self.hours ||= 24
+    self.hours = self.calculate_hours
     self.waive_facility_rental ||= false
   end
+
+  def calculate_hours
+    schedules = Schedule.where(day_id: self.id)
+    total = 0
+    schedules.each do |s|
+      total += s.hours
+    end
+    total
+  end
+
+
 
 
 end

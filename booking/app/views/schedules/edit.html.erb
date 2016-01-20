@@ -1,0 +1,10 @@
+<h1>Edit Schedule</h1>
+<%= @schedule.employee.full_name %>
+<%= @schedule.day.date %>
+<%= form_for @schedule do |f| %>
+<%= f.label :hours %>
+<%= f.number_field :hours %>
+<%= f.hidden_field :employee_id %>
+<%= f.hidden_field :day_id %>
+<%= f.submit "Submit!" %>
+<% end %>
