@@ -8,7 +8,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     if @employee.save
       flash[:success] = "Employee #{@employee.full_name} created"
-      redirect_to employee_path(@employee)
+      redirect_to employees_path
     else
       flash[:warning] = "Failed to create employee"
       render "new"
