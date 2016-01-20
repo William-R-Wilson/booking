@@ -39,13 +39,14 @@
     <% if @visit.needs_childcare %>
       <div>Needs Childcare</div>
     <% end %>
-    <div>Total Invoice Price: <%= number_to_currency @visit.income %></div>
+    <div><strong>Total Invoice Price: <%= number_to_currency @visit.income %></strong></div>
   </div>
 
 
 </div>
-
-<table class = "table">
+<div class = "row spacer"></div>
+<div>Click on the date to edit meals and lodging numbers</div>
+<table class = "table-condensed table-bordered">
 
   <thead>
     <th>Date:</th>

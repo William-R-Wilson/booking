@@ -1,36 +1,43 @@
-<h2>Costs</h2>
-<h3><%= @visit.guest.name %></h3>
-<div class = "col-md-4">
-<table class = "table-condensed">
-  <tbody>
-    <tr><td>Total income for this visit:</td><td><%= number_to_currency @visit.income %></td></tr>
+<div class = "container-fluid">
+  <h2>Costs</h2>
+  <h3><%= @visit.guest.name %></h3>
+  <div class = "col-md-4">
+  <table class = "table-condensed table-bordered">
+    <tbody>
+      <tr><td>Total income for this visit:</td><td><%= number_to_currency @visit.income %></td></tr>
 
-    <tr><th>Total supplies cost:</th></tr>
-    <tr><td><%= number_to_currency @supplies_plate %> per plate x <%=
-          @total_meals %> = </td> <td><%= number_to_currency @total_supplies_cost %></td></tr>
+      <tr><th>Total supplies cost:</th></tr>
+      <tr><td><%= number_to_currency @supplies_plate %> per plate x <%=
+            @total_meals %> = </td> <td><%= number_to_currency @total_supplies_cost %></td></tr>
 
-    <tr><th>Labor Cost</th></tr>
-    <tr><td>Total hours required:</td><td>  <%= @total_labor_hours %><td></tr>
-    <tr><td>Direct labor cost:</td><td> <%= number_to_currency @total_labor_cost %><td></tr>
-    <tr><td>Vacation accrual:</td><td> <%= number_to_currency @vacation_accrual %><td></tr>
-    <tr><td>Payroll taxes:</td><td> <%= number_to_currency @payroll_taxes %><td></tr>
-    <tr><td>Total labor cost:</td><td>  <%= number_to_currency @total_payroll_cost %><td></tr>
-    <tr><td>Total cost:</td><td> <%= number_to_currency @cost_total %><td></tr>
-    <tr><td>Remaining:</td><td><%= number_to_currency(@visit.income - @cost_total) %><td></tr>
-  </tbody>
-</table>
-</div>
+      <tr><th>Labor Cost</th></tr>
+      <tr><td>Total hours required:</td><td>  <%= @total_labor_hours %><td></tr>
+      <tr><td>Direct labor cost:</td><td> <%= number_to_currency @total_labor_cost %><td></tr>
+      <tr><td>Vacation accrual:</td><td> <%= number_to_currency @vacation_accrual %><td></tr>
+      <tr><td>Payroll taxes:</td><td> <%= number_to_currency @payroll_taxes %><td></tr>
+      <tr><td>Total labor cost:</td><td>  <%= number_to_currency @total_payroll_cost %><td></tr>
+      <tr><td>Total cost:</td><td> <%= number_to_currency @cost_total %><td></tr>
+      <tr><td>Remaining:</td><td><%= number_to_currency(@visit.income - @cost_total) %><td></tr>
+    </tbody>
+  </table>
+  </div>
 
-<table class = "table">
-<thead>
-  <th>Date:</th>
-  <% @visit.days.each do |day| %>
-    <th><%= link_to day.date, edit_hours_path(day) %></th>
-  <% end %>
-  <th>Totals</th>
-  <th>Price</th>
-  <th>Total Price</th>
-</thead>
+  <div class = "col-md-2"></div>
 
-<%= render "shared/days_table_body" %>
-</table>
+  <div class = "col-md-4">
+    <div>Click on the date to add employee schedules</div>
+    <table class = "table-condensed table-bordered">
+    <thead>
+      <th>Date:</th>
+      <% @visit.days.each do |day| %>
+        <th><%= link_to day.date, edit_hours_path(day) %></th>
+      <% end %>
+      <th>Totals</th>
+      <th>Price</th>
+      <th>Total Price</th>
+    </thead>
+
+    <%= render "shared/days_table_body" %>
+    </table>
+  </div>
+</div><!-- close container -->

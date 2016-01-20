@@ -8,6 +8,8 @@ class VisitsController < ApplicationController
 
   def create
     @visit = Visit.new(visit_params)
+    @guest_options = Guest.all.map { |g| [g.name, g.id] }
+    @statuses = Visit.statuses
     createDays(@visit)
     if @visit.save
       #@visit.init_price

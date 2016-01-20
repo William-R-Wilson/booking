@@ -10,8 +10,8 @@
         <% @schedules.each do |s| %>
           <tr><td><%= s.employee.full_name %></td>
             <td><%= s.hours %></td>
-            <td><%= link_to "Edit", edit_schedule_path(s), class: "btn btn-warning btn-xs" %></td>
-            <td><%= button_to "Delete", s, method: :delete, date: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %> </td>
+            <td><%= link_to "Edit", edit_schedule_path(s) %> |
+            <%= link_to "Delete", s, method: :delete, date: { confirm: "Are you sure?" } %> </td>
           </tr>
         <% end %>
       </tbody>
