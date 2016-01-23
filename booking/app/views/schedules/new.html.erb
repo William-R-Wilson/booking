@@ -5,7 +5,7 @@
       <%= form_for @schedule do |f| %>
         <%= render "shared/error_messages", object: f.object %>
         <div class = "form-group">
-          <%= f.label :hours %><%= f.number_field :hours, class: "form-control" %>
+          <%= f.label :hours %><%= f.number_field :hours, autofocus: true, class: "form-control" %>
           <%= f.hidden_field :employee_id %><%= f.hidden_field :day_id %>
         </div>
         <%= f.submit "Submit!", class: "btn btn-primary" %>

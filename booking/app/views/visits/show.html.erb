@@ -1,7 +1,6 @@
-<div class = "container-fluid">
 <div class="row">
   <div class = "col-md-4">
-    <h2><%= @visit.guest.name %></h2>
+    <strong><%= @visit.guest.name %></strong>
     <div><%= @visit.guest.bill_to %></div>
     <div><%= @visit.guest.address %></div>
     <div><%= @visit.guest.address2 %></div>
@@ -9,14 +8,15 @@
     <div><%= @visit.guest.email %></div>
   </div>
   <div class="col-md-4">
+    <%= link_to "View Costs/Set Schedules", costing_path(@visit) %>
   </div>
   <div class = "col-md-2">
-  <%= form_for @visit do |f| %>
-    <div class="form-group">
-      <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
-    </div>
-    <%= f.submit "Update Status", class: "btn btn-primary" %>
-  <% end %>
+    <%= form_for @visit do |f| %>
+      <div class="form-group">
+        <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
+      </div>
+      <%= f.submit "Update Status", class: "btn btn-primary" %>
+    <% end %>
 </div>
 </div>
 <div class = "row spacer"></div>
@@ -42,6 +42,11 @@
     <div><strong>Total Invoice Price: <%= number_to_currency @visit.income %></strong></div>
   </div>
 
+  <div class = "col-md-4"></div>
+
+  <div class = "col-md-2">
+
+  </div>
 
 </div>
 <div class = "row spacer"></div>
@@ -60,4 +65,3 @@
 
 <%= render "shared/days_table_body" %>
 </table>
-</div> <!-- close container -->

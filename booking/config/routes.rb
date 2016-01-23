@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :days
   resources :employees
   resources :users
+  resources :manage_users
 
   resources :schedules, except: [:new]
 

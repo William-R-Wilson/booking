@@ -3,12 +3,14 @@ class CalendarController < ApplicationController
   def show
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @visits = Visit.where start_date: (@date.beginning_of_month)..(@date.end_of_month)
-    @visit_dates = @visits.group_by(&:start_date) #currently just shows the start dates on the calendar
+    #@visit_dates = @visits.group_by(&:start_date) #currently just shows the start dates on the calendar
                                                   # you can pass a block to group_by
+    @visit_dates = get_days(@visits)
+
 
   end
 
-  def get_days(visits)  #this method is an attempt to show all days for a visit instead of just the start dates
+  def get_days2(visits)  #this method is an attempt to show all days for a visit instead of just the start dates
     visit_days = {}     # the trick is that visits can overlap dates
     visits.each do |v|
       vids = []
@@ -17,6 +19,18 @@ class CalendarController < ApplicationController
           vids.push(v.id)
         end
         visit_days[d.date] = vids
+      end
+    end
+    visit_days
+  end
+
+  def get_days(visits)
+    visit_days = {}
+    visits.each do |v|
+      v.days.each do |d|
+        day = d.date
+        visit_days[day] ||= []
+        visit_days[day] << v
       end
     end
     visit_days
