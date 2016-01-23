@@ -2,6 +2,7 @@ class Price < ActiveRecord::Base
 
   has_many :visits
   after_initialize :init
+  validates :tier, uniqueness: true
 
   def init
     puts "setting prices!"

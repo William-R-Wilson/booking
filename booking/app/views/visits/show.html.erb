@@ -14,8 +14,8 @@
     <%= form_for @visit do |f| %>
       <div class="form-group">
         <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
-      </div>
-      <%= f.submit "Update Status", class: "btn btn-primary" %>
+        <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options), {}, {class: "form-control"}) %>
+      <%= f.submit "Update", class: "btn btn-primary" %>
     <% end %>
 </div>
 </div>

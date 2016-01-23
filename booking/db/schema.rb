@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122221846) do
+ActiveRecord::Schema.define(version: 20160123221833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160122221846) do
     t.decimal "horton"
     t.decimal "lodge"
     t.decimal "rentalfee"
+    t.string  "tier"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 20160122221846) do
     t.boolean  "needs_supplies"
     t.integer  "status"
     t.integer  "price_id"
+    t.string   "price_tier"
   end
 
   add_index "visits", ["price_id"], name: "index_visits_on_price_id", using: :btree

@@ -4,11 +4,13 @@ class VisitsController < ApplicationController
     @visit = Visit.new
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
     @statuses = Visit.statuses
+    @tier_options = Price.all.map { |p| [p.tier] }
   end
 
   def create
     @visit = Visit.new(visit_params)
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
+    @tier_options = Price.all.map { |p| [p.tier] }
     @statuses = Visit.statuses
     createDays(@visit)
     if @visit.save
@@ -34,6 +36,7 @@ class VisitsController < ApplicationController
     @visit = Visit.find(params[:id])
     @statuses = Visit.statuses
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
+    @tier_options = Price.all.map { |p| [p.tier] }
     #the code block below doesn't capture the new start_date, so it just rebuilds the
     #days using the original start_date.
 
@@ -62,6 +65,7 @@ class VisitsController < ApplicationController
     @visit = Visit.find(params[:id])
     guest = Guest.where("guest_id = ?", @visit.guest_id)
     @days = @visit.days
+    @tier_options = Price.all.map { |p| [p.tier] }
   end
 
   def index
@@ -81,7 +85,8 @@ class VisitsController < ApplicationController
 
     def visit_params
       params.require(:visit).permit(:guest_id, :num_attendees, :start_date,
-                    :end_date, :status, :needs_projector, :needs_stafftime, :needs_childcare,
+                    :end_date, :status, :needs_projector, :needs_stafftime,
+                    :needs_childcare, :price_tier,
                     days_attributes: [:id, :breakfast, :lunch, :dinner, :dorm,
                     :hh, :lodge, :date, :waive_facility_rental])
     end

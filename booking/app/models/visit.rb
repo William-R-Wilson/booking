@@ -11,10 +11,13 @@ class Visit < ActiveRecord::Base
   default_scope { order(start_date: :asc) }
 
   def init_price
-    if self.price_id == nil
-      self.price_id = Price.first.id
-      puts "Added price ID"
+    if self.price_tier == nil
+      self.price_tier = "default"
+    else
+      price = Price.find_by(tier: self.price_tier)
+      self.price_id = price.id
     end
+    puts "Added price ID"
   end
 
   def num_days
