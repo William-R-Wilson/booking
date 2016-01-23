@@ -17,5 +17,5 @@
 //= require_tree .
 
 $(function() {
-  $('#flash').fadeOut(3500);
+  $('#flash').fadeTo(3500, 0);
 });

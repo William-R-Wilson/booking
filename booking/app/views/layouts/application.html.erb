@@ -6,29 +6,42 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div>
-        <ul class = "nav navbar-nav">
-          <li><a href="/guests/new">Add a new group</a></li>
-          <li><a href="/visits/new">Add a visit</a></li>
-          <li><a href="/visits">View all visitors</a></li>
-          <li><a href="/guests">View all guests</a></li>
-          <li><a href="/calendar">Calendar</a></li>
-          <li><a href="/employees/new">Add employees</a></li>
-        </ul>
+  <div class = "container-fluid">
+    <div class = "row">
+      <div class = "col-md-10">
+          <% flash.each do |message_type, message| %>
+            <div class = "alert alert-<%= message_type %>" id = "flash"><%= message %></div>
+          <% end %>
       </div>
+      <% if user_signed_in? %>
+        <div class = "col-md-2">
+          Logged in as <strong><%= current_user.email %></strong>
+          <br />
+          <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+        </div>
     </div>
-  </nav>
 
-<div class = "container-fluid">
-  <% flash.each do |message_type, message| %>
-    <div class = "alert alert-<%= message_type %>" id = "flash"><%= message %></div>
-  <% end %>
-</div>
+      <nav class="navbar navbar-default">
 
-<%= yield %>
+          <div>
+            <ul class = "nav navbar-nav">
+              <li><a href="/guests/new">Add a new group</a></li>
+              <li><a href="/visits/new">Add a visit</a></li>
+              <li><a href="/visits">View all visitors</a></li>
+              <li><a href="/guests">View all guests</a></li>
+              <li><a href="/calendar">Calendar</a></li>
+              <li><a href="/employees/new">Add employees</a></li>
+            </ul>
+          </div>
 
-</body>
+      </nav>
+      <% end %>
+
+      <%= yield %>
+
+
+  </div>
+  </body>
 </html>

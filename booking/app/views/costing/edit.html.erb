@@ -1,6 +1,8 @@
-<div class = "container fluid">
   <div class = "row">
+    <div><%= link_to "Return to Visit", costing_path(@day.visit) %></div>
+  </div>
   <h3>Scheduled employees for <%= @day.date %></h3>
+<div class = "row">
   <div class = "col-md-4">
     <table class = "table-condensed">
       <thead>
@@ -16,8 +18,13 @@
         <% end %>
       </tbody>
     </table>
+
+        <h3>Add a schedule for <%= @day.date %></h3>
+        <% @employees.each do |e| %>
+          <div><%= link_to e.full_name, new_schedule_path(e, @day.id) %></div>
+        <% end %>
   </div>
-  <div class = "col-md-4"></div>
+  <div class = "col-md-4"></div><!-- space in the middle -->
   <div class = "col-md-4">
     <table class = "table-condensed">
       <thead>
@@ -32,20 +39,5 @@
         <tr><td>Horton House: </td><td><%= @day.hh %></td></tr>
       </tbody>
     </table>
-</div>
-</div>
-
-<div class = "row">
-  <div class = "col-md-4">
-    <h3>Add a schedule for <%= @day.date %></h3>
-    <% @employees.each do |e| %>
-      <div><%= link_to e.full_name, new_schedule_path(e, @day.id) %></div>
-    <% end %>
   </div>
-</div>
-<div class = "row"><br />
-</div>
-<div class = "row">
-  <div><%= link_to "Return to Visit", costing_path(@day.visit) %></div>
-</div>
 </div>
