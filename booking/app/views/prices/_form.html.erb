@@ -1,0 +1,14 @@
+<%= form_for @price do |f| %>
+<%= render "shared/error_messages", object: f.object %>
+<div class = "form-group">
+  <%= f.label :tier %><%= f.text_field :tier, class: "form-control" %>
+  <%= f.label :breakfast %><%= f.number_field :breakfast, class: "form-control" %>
+  <%= f.label :lunch %><%= f.number_field :lunch, class: "form-control" %>
+  <%= f.label :dinner %><%= f.number_field :dinner, class: "form-control" %>
+  <%= f.label :dorm %><%= f.number_field :dorm, class: "form-control" %>
+  <%= f.label :horton %><%= f.number_field :horton, class: "form-control" %>
+  <%= f.label :lodge %><%= f.number_field :lodge, class: "form-control" %>
+  <%= f.label :rentalfee %><%= f.number_field :rentalfee, class: "form-control" %>
+</div>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %> 

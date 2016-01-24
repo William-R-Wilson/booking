@@ -6,15 +6,18 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+
+  resources :users, controller: 'manage_users'
   resources :visits
   resources :guests
   resources :days
   resources :employees
-  resources :users
-  resources :manage_users
+  resources :prices
+
+
+  resources :admin_pages
 
   resources :schedules, except: [:new]
-
   get 'schedule/new/:employee_id/:day_id' => 'schedules#new', as: :new_schedule
   #get 'schedule/:id' => 'schedules#show', as: :schedule
   #get 'schedules' => 'schedules#index', as: :schedules
