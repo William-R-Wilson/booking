@@ -13,9 +13,10 @@ class Visit < ActiveRecord::Base
   def init_price
     if self.price_tier == nil
       self.price_tier = "default"
+    else
+      price = Price.find_by(tier: self.price_tier)
+      self.price_id = price.id
     end
-    price = Price.find_by(tier: self.price_tier)
-    self.price_id ||= price.id
     puts "Added price ID"
   end
 
