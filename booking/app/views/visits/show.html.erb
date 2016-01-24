@@ -15,9 +15,10 @@
       <div class="form-group">
         <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
         <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options), {}, {class: "form-control"}) %>
-      <%= f.submit "Update", class: "btn btn-primary" %>
-    <% end %>
-</div>
+        <%= f.submit "Update", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 <div class = "row spacer"></div>
 <div class="row">
@@ -42,13 +43,8 @@
     <div><strong>Total Invoice Price: <%= number_to_currency @visit.income %></strong></div>
   </div>
 
-  <div class = "col-md-4"></div>
-
-  <div class = "col-md-2">
-
   </div>
 
-</div>
 <div class = "row spacer"></div>
 <div>Click on the date to edit meals and lodging numbers</div>
 <table class = "table-condensed table-bordered">
