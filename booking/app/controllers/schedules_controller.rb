@@ -1,5 +1,10 @@
 class SchedulesController < ApplicationController
 
+  def index
+    @schedules = Schedule.all
+  end
+
+
   def new
     @schedule = Schedule.new(day_id: params[:day_id], employee_id: params[:employee_id])
   end

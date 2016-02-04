@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   post 'costing/:id(.:format)' => 'costing#create', as: :create_hours
   resource :calendar, only: [:show], controller: :calendar
 
-  root "guests#new"
+  root "calendar#show"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -5,7 +5,7 @@
       = render "shared/error_messages", object: f.object
       .form-group
         = f.label "First Name", class: "control-label"
-        = f.text_field :first_name, id: "first-name", class: "form-control"
+        = f.text_field :first_name, autofocus: true, id: "first-name", class: "form-control"
       .form-group
         = f.label "Last Name", class: "control-label"
         = f.text_field :last_name,  id: "last-name", class: "form-control"
