@@ -1,0 +1,9 @@
+
+<ul>
+<% @visits.each do |v| %>
+  <li><%= v.guest.name %>, <%= number_to_currency v.income %></li>
+<% end %>
+</ul>
+
+<div> Total income for this period: <%= number_to_currency @total_inc %></div>
+<div> Total expense for this period: </div>

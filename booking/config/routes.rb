@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :days
   resources :employees
   resources :prices
-
+  #resources :reports
+  get 'reports' => 'reports#index'
+  get 'report' => 'reports#show'
 
   resources :admin_pages
 
