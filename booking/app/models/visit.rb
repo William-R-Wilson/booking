@@ -20,6 +20,10 @@ class Visit < ActiveRecord::Base
     puts "Added price ID"
   end
 
+  def total_meals
+    breakfast_count + lunch_count + dinner_count
+  end
+
   def num_days
     number_days = (end_date - start_date).to_i + 1
   end

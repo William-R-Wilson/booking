@@ -11,9 +11,8 @@ class ReportsController < ApplicationController
 
     @visits = Visit.where(  'start_date BETWEEN ? AND ?', @start_date, @end_date)
     @total_inc = total_income(@visits)
-
-
-
+    visits = ReportingDecorator.new(@visits)
+    @total_hours = sum_labor_hours(@visits)
   end
 
   private
@@ -22,6 +21,14 @@ class ReportsController < ApplicationController
       sum = 0
       visits.each do |v|
         sum += v.income
+      end
+      sum
+    end
+
+    def sum_labor_hours(visits)
+      sum = 0
+      visits.each do |v|
+        sum += v.hours_count
       end
       sum
     end

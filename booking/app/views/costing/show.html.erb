@@ -8,17 +8,17 @@
       <tr><td>Total income for this visit:</td><td><%= number_to_currency @visit.income %></td></tr>
 
       <tr><th>Total supplies cost:</th></tr>
-      <tr><td><%= number_to_currency @supplies_plate %> per plate x <%=
-            @total_meals %> = </td> <td><%= number_to_currency @total_supplies_cost %></td></tr>
+      <tr><td><%= number_to_currency @visit_costs.supplies_plate %> per plate x <%=
+            @visit.total_meals %> = </td> <td><%= number_to_currency @visit_costs.total_supplies_cost %></td></tr>
 
       <tr><th>Labor Cost</th></tr>
-      <tr><td>Total hours required:</td><td>  <%= @total_labor_hours %><td></tr>
-      <tr><td>Direct labor cost:</td><td> <%= number_to_currency @total_labor_cost %><td></tr>
-      <tr><td>Vacation accrual:</td><td> <%= number_to_currency @vacation_accrual %><td></tr>
-      <tr><td>Payroll taxes:</td><td> <%= number_to_currency @payroll_taxes %><td></tr>
-      <tr><td>Total labor cost:</td><td>  <%= number_to_currency @total_payroll_cost %><td></tr>
-      <tr><td>Total cost:</td><td> <%= number_to_currency @cost_total %><td></tr>
-      <tr><td>Remaining:</td><td><%= number_to_currency(@visit.income - @cost_total) %><td></tr>
+      <tr><td>Total hours required:</td><td>  <%= @visit_costs.total_labor_hours %><td></tr>
+      <tr><td>Direct labor cost:</td><td> <%= number_to_currency @visit_costs.total_labor_cost %><td></tr>
+      <tr><td>Vacation accrual:</td><td> <%= number_to_currency @visit_costs.vacation_accrual %><td></tr>
+      <tr><td>Payroll taxes:</td><td> <%= number_to_currency @visit_costs.payroll_taxes %><td></tr>
+      <tr><td>Total labor cost:</td><td>  <%= number_to_currency @visit_costs.total_payroll_cost %><td></tr>
+      <tr><td>Total cost:</td><td> <%= number_to_currency @visit_costs.cost_total %><td></tr>
+      <tr><td>Remaining:</td><td><%= number_to_currency(@visit.income - @visit_costs.cost_total) %><td></tr>
     </tbody>
   </table>
   </div>

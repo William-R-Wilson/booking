@@ -2,16 +2,7 @@ class CostingController < ApplicationController
 
   def show
     @visit = Visit.find(params[:id])
-    @labor_hour = 15
-    @total_labor_hours = @visit.hours_count
-    @total_labor_cost = @total_labor_hours * @labor_hour
-    @supplies_plate = 7.41
-    @total_meals = @visit.breakfast_count + @visit.lunch_count + @visit.dinner_count
-    @total_supplies_cost = @total_meals * @supplies_plate
-    @vacation_accrual = @total_labor_cost * 0.1
-    @payroll_taxes = @total_labor_cost * 0.0765
-    @total_payroll_cost = @total_labor_cost + @vacation_accrual + @payroll_taxes
-    @cost_total = @total_payroll_cost + @total_supplies_cost
+    @visit_costs = CostingDecorator.new(@visit)
   end
 
   def edit
@@ -20,7 +11,7 @@ class CostingController < ApplicationController
     @schedules = Schedule.where(day_id: @day.id)
   end
 
-  def update # this method has been made useless by adding schedules. 
+  def update # this method has been made useless by adding schedules.
     @day = Day.find(params[:id])
     visit = @day.visit_id
     respond_to do |format|

@@ -1,9 +1,9 @@
 
 <ul>
 <% @visits.each do |v| %>
-  <li><%= v.guest.name %>, <%= number_to_currency v.income %></li>
+  <li><%= link_to v.guest.name, costing_path(v.id) %>, <%= number_to_currency v.income %>, <%= v.hours_count %></li>
 <% end %>
 </ul>
 
 <div> Total income for this period: <%= number_to_currency @total_inc %></div>
-<div> Total expense for this period: </div>
+<div> Total labor hours for this period: <%= @total_hours %></div>
