@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207142538) do
+ActiveRecord::Schema.define(version: 20160207165851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20160207142538) do
     t.integer  "num_attendees"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "guest_id"
     t.boolean  "needs_projector"
     t.boolean  "needs_childcare"
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 20160207142538) do
     t.string   "price_tier"
     t.text     "purpose"
     t.text     "notes"
+    t.boolean  "deposit_received"
+    t.boolean  "agreement_signed"
   end
 
   add_index "visits", ["price_id"], name: "index_visits_on_price_id", using: :btree

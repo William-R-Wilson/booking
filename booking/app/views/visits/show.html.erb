@@ -1,5 +1,6 @@
 <div class="row">
-  <div class = "col-md-4">
+  <div class = "col-md-3">
+    <div><%= link_to "View Costs/Set Schedules", costing_path(@visit) %></div>
     <strong><%= @visit.guest.name %></strong>
     <div><%= @visit.guest.bill_to %></div>
     <div><%= @visit.guest.address %></div>
@@ -9,20 +10,42 @@
     <div><%= @visit.guest.telephone %></div>
     <div><%= @visit.guest.about %></div>
   </div>
-  <div class="col-md-4">
-    <%= link_to "View Costs/Set Schedules", costing_path(@visit) %>
-  </div>
-  <div class = "col-md-2">
+  <div class="col-md-9">
     <%= form_for @visit do |f| %>
+      <div class = "col-md-3">
+      <div class = "form-group">
+        <div><%= f.label "Notes" %><%= f.text_area(:notes, class: "form-control") %></div>
+      </div>
+    </div>
+
+  <div class = "col-md-2">
       <div class="form-group">
         <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
         <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options, selected: "default"),
                                               {}, {class: "form-control"}) %>
-        <%= f.submit "Update", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+      </div>
   </div>
-</div>
+  <div class = "col-md-3">
+          <%= f.label :agreement_signed do %>
+            <%= f.check_box :agreement_signed %>  Agreement Signed?
+          <% end %>
+          <%= f.label :deposit_received do %>
+            <%= f.check_box :deposit_received %>  Deposit Received?
+          <% end %>
+          <%= f.label :needs_projector do %>
+            <%= f.check_box :needs_projector %>  Needs Projector
+          <% end %>
+          <%= f.label :needs_childcare do %>
+            <%= f.check_box :needs_childcare %>  Needs Childcare
+          <% end %>
+          <%= f.label :needs_stafftime do %>
+            <%= f.check_box :needs_stafftime %>  Needs Staff Time
+          <% end %>
+  </div>
+          <div class = "col-md-1"><%= f.submit "Update", class: "btn btn-primary" %></div>
+      <% end %><!-- end form -->
+</div><!-- end col-md-9 -->
+</div><!-- end row class -->
 <div class = "row spacer"></div>
 <div class="row">
   <div class = "col-md-4">
@@ -42,6 +65,16 @@
     <% end %>
     <% if @visit.needs_childcare %>
       <div>Needs Childcare</div>
+    <% end %>
+    <% if @visit.agreement_signed %>
+      <div>Agreement Signed</div>
+    <% else %>
+      <div>Agreement not Signed</div>
+    <% end %>
+    <% if @visit.deposit_received %>
+      <div>Deposit Received</div>
+    <% else %>
+      <div>Deposit not received</div>
     <% end %>
     <div><strong>Total Invoice Price: <%= number_to_currency @visit.income %></strong></div>
     <div>Purpose of visit: <%= @visit.purpose %></div>
