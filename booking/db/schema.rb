@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123221833) do
+ActiveRecord::Schema.define(version: 20160207142538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20160123221833) do
     t.string   "bill_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "telephone"
+    t.text     "about"
   end
 
   create_table "prices", force: :cascade do |t|
@@ -101,6 +103,8 @@ ActiveRecord::Schema.define(version: 20160123221833) do
     t.integer  "status"
     t.integer  "price_id"
     t.string   "price_tier"
+    t.text     "purpose"
+    t.text     "notes"
   end
 
   add_index "visits", ["price_id"], name: "index_visits_on_price_id", using: :btree

@@ -36,7 +36,7 @@ class GuestsController < ApplicationController
   private
 
     def guest_params
-      params.require(:guest).permit(:name, :bill_to, :email, :address, :address2, :city, :state, :zip)
+      params.require(:guest).permit(:name, :bill_to, :email, :address, :address2, :city, :state, :zip, :about)
     end
 
 end

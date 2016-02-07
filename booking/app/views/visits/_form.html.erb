@@ -19,6 +19,9 @@
         <%= f.label "Group:" %><%= f.select(:guest_id, @guest_options, {}, {class: "form-control"}) %>
       </div>
       <div class = "form-group">
+        <%= f.label "Purpose of Visit" %><%= f.text_area(:purpose, class: "form-control") %>
+      </div>
+      <div class = "form-group">
         <%= f.label "Number of Attendees:" %><%= f.number_field :num_attendees, autofocus: true, class: "form-control" %>
       </div>
       <div class = "form-group">
@@ -35,6 +38,9 @@
       </div>
       <div class = "form-group">
           <%= f.label "Need Staff time" %><%= f.check_box :needs_stafftime, class: "checkbox-inline" %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Notes" %><%= f.text_area(:notes, class: "form-control") %>
       </div>
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
