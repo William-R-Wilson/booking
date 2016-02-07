@@ -2,16 +2,6 @@ class CostingDecorator
 
   def initialize(visit)
     @visit = visit
-    #@labor_hour = 15
-    #@total_labor_hours = @visit.hours_count
-    #@total_labor_cost = total_labor_hours * @labor_hour
-    #@supplies_plate = 7.41
-    #@total_meals = @visit.breakfast_count + @visit.lunch_count + @visit.dinner_count
-
-    #@vacation_accrual = @total_labor_cost * 0.1
-    #@payroll_tax_rate = 0.0765
-    #@total_payroll_cost = @total_labor_cost + @vacation_accrual + @payroll_taxes
-    #@cost_total = @total_payroll_cost + total_supplies_cost
   end
 
   def supplies_plate
