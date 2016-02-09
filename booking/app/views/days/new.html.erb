@@ -1,0 +1,6 @@
+<h2>Create a new day</h2>
+<%= form_for @day do |f| %>
+  <%= f.label :date %><%= f.date_select :date, class: "form-control" %>
+  <%= f.hidden_field :waive_facility_rental, value: true %><
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

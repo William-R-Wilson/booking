@@ -1,0 +1,23 @@
+<h2>All Days</h2>
+<table class = "table">
+  <tr>
+    <th>Date</th>
+    <th>Group</th>
+    <th>Hours Scheduled</th>
+    <th>Actions</th>
+  </tr>
+  <tbody>
+<% @days.each do |day| %>
+  <tr>
+    <td><%= link_to day.date, edit_hours_path(day) %></td>
+    <td><% if day.visit == nil %>
+      <%= "No Visit" %>
+    <% else %>
+      <%= link_to day.visit.guest.name, visit_path(day.visit) %>
+    <% end %></td>
+    <td><%= day.calculate_hours %></td>
+    <td>Actions go here</td>
+  </tr>
+<% end %>
+  </tbody>
+</table>

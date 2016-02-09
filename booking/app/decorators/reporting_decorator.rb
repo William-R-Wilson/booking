@@ -14,7 +14,7 @@ class ReportingDecorator
     arr
   end
 
-  def visit_costs
+  def total_visit_costs
     sum = 0
     @visit_costs.each do |v|
       sum += v.cost_total

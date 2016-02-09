@@ -1,5 +1,11 @@
   <div class = "row">
-    <div><%= link_to "Return to Visit", costing_path(@day.visit) %></div>
+
+    <div>
+      <% if Visit.exists?(@day.visit_id) %>
+        <%= link_to "Return to Visit", costing_path(@day.visit) %>
+      <% end %>
+    </div>
+
   </div>
   <h3>Scheduled employees for <%= @day.date %></h3>
 <div class = "row">

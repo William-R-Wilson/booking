@@ -20,9 +20,33 @@ class DaysController < ApplicationController
     end
   end
 
+  def new  #this would only be used to create days that are unassociated with any visit
+    #this method will rely on hidden fields in the day/new view
+    @day = Day.new
+  end
+
+  def create
+    @day = Day.new(day_params)
+    if @day.save
+      flash[:success] = "Added new day #{@day.date} with no associated visit"
+      redirect_to edit_hours_path(@day)
+    else
+      flash[:warning] = "Failed to add day"
+      render "new"
+    end
+  end
 
   def index
+    @days = Day.all
+  end
 
+  def day_visit(day)
+    today = Day.find(day)
+    if today.visit == nil
+      return "No visit associated"
+    else
+      return today.visit.guest.name
+    end
   end
 
   private

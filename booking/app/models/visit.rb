@@ -20,6 +20,11 @@ class Visit < ActiveRecord::Base
     puts "Added price ID"
   end
 
+  def total_costs
+    @current_visit = CostingDecorator.new(self)
+    @current_visit.cost_total
+  end
+
   def total_meals
     breakfast_count + lunch_count + dinner_count
   end
