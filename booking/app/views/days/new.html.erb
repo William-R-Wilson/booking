@@ -1,6 +1,13 @@
 <h2>Create a new day</h2>
 <%= form_for @day do |f| %>
   <%= f.label :date %><%= f.date_select :date, class: "form-control" %>
-  <%= f.hidden_field :waive_facility_rental, value: true %><
+  <%= f.hidden_field :waive_facility_rental, value: true %>
+  <%= f.hidden_field :breakfast, value: 0 %>
+  <%= f.hidden_field :lunch, value: 0 %>
+  <%= f.hidden_field :dinner, value: 0 %>
+  <%= f.hidden_field :lodge, value: 0 %>
+  <%= f.hidden_field :hh, value: 0 %>
+  <%= f.hidden_field :dorm, value: 0 %>
+
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

@@ -21,7 +21,7 @@
   <div class = "col-md-2">
       <div class="form-group">
         <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
-        <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options, selected: "default"),
+        <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options, selected: @visit.price_tier),
                                               {}, {class: "form-control"}) %>
       </div>
   </div>

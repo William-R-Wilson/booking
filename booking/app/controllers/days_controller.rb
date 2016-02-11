@@ -50,6 +50,7 @@ class DaysController < ApplicationController
   end
 
   private
+  
 
     def day_params
       params.require(:day).permit(:id, :visit_id, :breakfast,

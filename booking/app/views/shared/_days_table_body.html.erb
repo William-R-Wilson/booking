@@ -6,7 +6,7 @@
         <td><%= day.breakfast %></td>
       <% end %>
       <td><strong><%= @visit.breakfast_count %></strong></td>
-      <td>$10.00</td>
+      <td><%= @visit.price.breakfast %></td>
       <td><%= number_to_currency @visit.bf_income %></td>
     </tr>
     <tr>
@@ -15,7 +15,7 @@
         <td><%= day.lunch %></td>
       <% end %>
       <td><strong><%= @visit.lunch_count %></strong></td>
-      <td>$12.00</td>
+      <td><%= @visit.price.lunch %></td>
       <td><%= number_to_currency @visit.lunch_income %></td>
     </tr>
     <tr>
@@ -24,7 +24,7 @@
         <td><%= day.dinner %></td>
       <% end %>
       <td><strong><%= @visit.dinner_count %></strong></td>
-      <td>$14.00</td>
+      <td><%= @visit.price.dinner %></td>
       <td><%= number_to_currency @visit.din_income %></td>
     </tr>
     <tr>
@@ -33,7 +33,7 @@
         <td><%= day.dorm %></td>
       <% end %>
       <td><strong><%= @visit.dorm_count %></strong></td>
-      <td>$45.00</td>
+      <td><%= @visit.price.dorm %></td>
       <td><%= number_to_currency @visit.dorm_income %></td>
     </tr>
     <tr>
@@ -42,7 +42,7 @@
         <td><%= day.hh %></td>
       <% end %>
     <td><strong><%= @visit.hh_count %></strong></td>
-    <td>$60.00</td>
+    <td><%= @visit.price.horton %></td>
     <td><%= number_to_currency @visit.hh_income %></td>
     </tr>
     <tr>
@@ -51,7 +51,7 @@
         <td><%= day.lodge %></td>
       <% end %>
       <td><strong><%= @visit.lodge_count %></strong></td>
-      <td>$60.00</td>
+      <td><%= @visit.price.lodge %></td>
       <td><%= number_to_currency @visit.lodge_income %></td>
     </tr>
     <tr>
@@ -60,7 +60,7 @@
         <% if day.waive_facility_rental? %>
           <td>Waived</td>
         <% else %>
-          <td>$150</td>
+          <td><%= @visit.price.rentalfee %></td>
         <% end %>
       <% end %>
         <td><%= @visit.num_days %></td>

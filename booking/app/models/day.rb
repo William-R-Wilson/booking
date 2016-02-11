@@ -2,7 +2,7 @@ class Day < ActiveRecord::Base
 
   belongs_to :visit
   has_many :schedules, dependent: :destroy
-  #validates_numericality_of :breakfast, :lunch, :dinner, :hh, :dorm, :lodge
+  validates_numericality_of :breakfast, :lunch, :dinner, :hh, :dorm, :lodge
   default_scope { order(date: :asc) }
   after_initialize :defaults
 
