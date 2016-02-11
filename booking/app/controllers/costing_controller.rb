@@ -1,4 +1,6 @@
 class CostingController < ApplicationController
+  #require 'visit_costing'
+  #include VisitCosting
 
   def show
     @visit = Visit.find(params[:id])

@@ -1,4 +1,7 @@
 class Visit < ActiveRecord::Base
+  require 'visit_costing'
+  include VisitCosting
+
   belongs_to :guest
   belongs_to :price
   has_many :days, dependent: :destroy
