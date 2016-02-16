@@ -6,8 +6,8 @@ class Visit < ActiveRecord::Base
   belongs_to :price
   has_many :days, dependent: :destroy
   validates :num_attendees, presence: true, numericality: {less_than: 101 }
-  validates :start_date, presence: true
-  validates :end_date, presence: true
+  validates_presence_of :start_date, :end_date
+  validate :check_dates
   accepts_nested_attributes_for :days
   enum status: [:tentative, :confirmed, :billed, :paid]
   after_initialize :init_price
@@ -142,5 +142,13 @@ class Visit < ActiveRecord::Base
   def income
     bf_income + lunch_income + din_income + dorm_income + hh_income + lodge_income + fac_income
   end
+
+  private
+
+    def check_dates
+      if end_date < start_date
+        errors.add(:end_date, "cannot be before start date")
+      end
+    end
 
 end

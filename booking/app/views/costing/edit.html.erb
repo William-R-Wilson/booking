@@ -7,7 +7,7 @@
     </div>
 
   </div>
-  <h3>Scheduled employees for <%= @day.date %></h3>
+  <h3>Scheduled employees for <%= formatted_date @day.date %></h3>
 <div class = "row">
   <div class = "col-md-4">
     <table class = "table-condensed">
@@ -25,7 +25,7 @@
       </tbody>
     </table>
 
-        <h3>Add a schedule for <%= @day.date %></h3>
+        <h3>Add a schedule for <%= formatted_date @day.date %></h3>
         <% @employees.each do |e| %>
           <div><%= link_to e.full_name, new_schedule_path(e, @day.id) %></div>
         <% end %>

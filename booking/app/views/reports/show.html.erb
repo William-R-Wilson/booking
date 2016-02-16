@@ -1,4 +1,4 @@
-<h2> Income/Expense for <%= @start_date %> to <%= @end_date %></h2>
+<h2> Income/Expense for <%= formatted_date @start_date %> to <%= formatted_date @end_date %></h2>
 <div>Weeks in period:  <%= number_with_precision @weeks_in_period, precision: 1 %></div>
 <table class = "table">
   <thead>

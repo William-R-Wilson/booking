@@ -32,6 +32,23 @@ class GuestsController < ApplicationController
     @guest = Guest.find(params[:id])
   end
 
+  def edit
+    @guest = Guest.find(params[:id])
+  end
+
+  def update
+    @guest = Guest.find(params[:id])
+    respond_to do |format|
+      if @guest.update(guest_params)
+        flash[:success] = "Info updated for #{@guest.name}"
+        format.html { redirect_to guests_path }
+      else
+        flash[:warning] = "Failed to update #{@guest.name}"
+        format.html {render :edit }
+      end
+    end
+  end
+
 
   private
 

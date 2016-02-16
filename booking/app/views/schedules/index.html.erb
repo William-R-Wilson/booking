@@ -1,8 +1,8 @@
 <h3>All Schedules</h3>
 <% @schedules.each do |s| %>
   <div>
-    <%= s.employee.full_name %> | 
-    <%= s.day.date %> |
+    <%= s.employee.full_name %> |
+    <%= formatted_date s.day.date %> |
     <%= s.hours %>
   </div>
 <% end %>

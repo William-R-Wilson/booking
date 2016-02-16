@@ -12,8 +12,8 @@
   <tr>
     <td><%= visit.guest.name %></td>
     <td><%= visit.num_attendees %></td>
-    <td><%= visit.start_date %></td>
-    <td><%= visit.end_date %></td>
+    <td><%= formatted_date visit.start_date %></td>
+    <td><%= formatted_date visit.end_date %></td>
     <td>
     <%= link_to "Show", visit_path(visit) %> | <%= link_to "Delete", visit,
         method: :delete, data: { confirm: "Are you sure?" } %> | <%= link_to "Costs", costing_path(visit) %></td>
