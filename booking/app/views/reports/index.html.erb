@@ -2,10 +2,10 @@
   <h2>Reporting</h2>
   <%= form_tag("/report", method: "get") do %>
 
-    <div class = "form-group">Start Date: </div>
-      <%= select_date Date.today.prev_month, prefix: :start_date, with_css_classes: true %><br>
-    <div class = "form-group">End Date: </div>
-      <%= select_date Date.today, prefix: :end_date, with_css_classes: true %><br>
+    <div class = "form-group">Start Date:
+      <%= select_date Date.today.prev_month, prefix: :start_date, with_css_classes: true %></div><br>
+    <div class = "form-group">End Date:
+      <%= select_date Date.today, prefix: :end_date, with_css_classes: true %></div><br>
 
     <div class="form-group">
       <%= submit_tag("See report", class: "btn btn-primary") %>

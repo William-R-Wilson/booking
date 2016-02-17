@@ -1,38 +1,40 @@
 <h2> Income/Expense for <%= formatted_date @start_date %> to <%= formatted_date @end_date %></h2>
-<div>Weeks in period:  <%= number_with_precision @weeks_in_period, precision: 1 %></div>
-<table class = "table">
-  <thead>
-    <th>Guest Name</th>
-    <th>Income</th>
-    <th>Labor Hours</th>
-    <th>Total Expense</th>
-  </thead>
-  <tbody>
-    <% @visits.each do |v| %>
-      <tr>
-        <td><%= link_to v.guest.name, costing_path(v.id) %></td>
-        <td><%= number_to_currency v.income %></td>
-        <td><%= v.hours_count %>
-        <td><%= number_to_currency v.total_costs %></td>
-      </tr>
-    <% end %>
-      <tr>
-        <td><%= @unassociated_days.count %> Unassociated Days</td>
-        <td>-</td>
-        <td><%= @unassociated_hours %></td>
-        <td><%= number_to_currency @unassociated_cost %></td>
-      </tr>
-  </tbody>
-</table>
 
-
+<div class = "row">
+  <div>Weeks in period:  <%= number_with_precision @weeks_in_period, precision: 1 %></div>
+  <div>Total income for this period: <%= number_to_currency @total_income %></div>
+  <div>Total labor hours for this period: <%= @data_for_visits.all_visit_hours %></div>
+  <div>Total direct costs for the period: <%= number_to_currency @data_for_visits.total_visit_costs %></div>
+  <div>Overhead costs: <%= number_to_currency @overhead_expense %></div>
+  <div>Salary costs:  <%= number_to_currency @salary_expense %></div>
+  <div>Remaining:  <%= number_to_currency (@total_income - @data_for_visits.total_visit_costs - @overhead_expense - @salary_expense) %></div>
+</div>
 <div class = "row spacer"></div>
-
-<div>Total income for this period: <%= number_to_currency @total_income %></div>
-<div>Total labor hours for this period: <%= @data_for_visits.all_visit_hours %></div>
-<div>Total direct costs for the period: <%= number_to_currency @data_for_visits.total_visit_costs %></div>
-<div>Overhead costs: <%= number_to_currency @overhead_expense %></div>
-<div>Salary costs:  <%= number_to_currency @salary_expense %></div>
-<div>Remaining:  <%= number_to_currency (@total_income - @data_for_visits.total_visit_costs - @overhead_expense - @salary_expense) %></div>
-
-<div class = "row spacer"></div>
+<div class = "row">
+  <table class = "table">
+    <thead>
+      <th>Guest Name</th>
+      <th>Income</th>
+      <th>Labor Hours</th>
+      <th>Total Expense</th>
+      <th>Net Income</th>
+    </thead>
+    <tbody>
+      <% @visits.each do |v| %>
+        <tr>
+          <td><%= link_to v.guest.name, costing_path(v.id) %></td>
+          <td><%= number_to_currency v.income %></td>
+          <td><%= v.hours_count %>
+          <td><%= number_to_currency v.total_costs %></td>
+          <td><%= number_to_currency (v.income - v.total_costs) %></td>)
+        </tr>
+      <% end %>
+        <tr>
+          <td><%= @unassociated_days.count %> Unassociated Days</td>
+          <td>-</td>
+          <td><%= @unassociated_hours %></td>
+          <td><%= number_to_currency @unassociated_cost %></td>
+        </tr>
+    </tbody>
+  </table>
+</div>

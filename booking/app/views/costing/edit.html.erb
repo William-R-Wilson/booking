@@ -9,14 +9,29 @@
   </div>
   <h3>Scheduled employees for <%= formatted_date @day.date %></h3>
 <div class = "row">
-  <div class = "col-md-4">
+  <div class = "col-md-6">
     <table class = "table-condensed">
       <thead>
-        <tr><th>Name</th><th>Hours</th><th></th></tr>
+        <tr><th>Name</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Hours</th>
+        <th></th></tr>
       </thead>
       <tbody>
         <% @schedules.each do |s| %>
-          <tr><td><%= s.employee.full_name %></td>
+          <tr>
+            <td><%= s.employee.full_name %></td>
+            <% if s.start_time == nil %>
+              <td>Not set</td>
+            <% else %>
+              <td><%= s.start_time.strftime("%l:%M %P") %></td>
+            <% end %>
+            <% if s.end_time == nil %>
+              <td>Not set</td>
+            <% else %>
+              <td><%= s.end_time.strftime("%l:%M %P") %></td>
+            <% end %>
             <td><%= s.hours %></td>
             <td><%= link_to "Edit", edit_schedule_path(s) %> |
             <%= link_to "Delete", s, method: :delete, date: { confirm: "Are you sure?" } %> </td>
@@ -30,7 +45,7 @@
           <div><%= link_to e.full_name, new_schedule_path(e, @day.id) %></div>
         <% end %>
   </div>
-  <div class = "col-md-4"></div><!-- space in the middle -->
+  <div class = "col-md-1"></div><!-- space in the middle -->
   <div class = "col-md-4">
     <table class = "table-condensed">
       <thead>

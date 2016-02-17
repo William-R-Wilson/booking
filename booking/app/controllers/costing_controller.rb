@@ -10,7 +10,7 @@ class CostingController < ApplicationController
   def edit
     @day = Day.find(params[:id])
     @employees = Employee.all
-    @schedules = Schedule.where(day_id: @day.id)
+    @schedules = Schedule.where(day_id: @day.id).order(start_time: :asc)
   end
 
   def update # this method has been made useless by adding schedules.
