@@ -8,8 +8,12 @@ class CostingDecorator
     7.41
   end
 
-  def labor_hour_rate
-    15
+  def total_labor_cost
+    total = 0
+    @visit.schedules.each do |s|
+      total += s.cost
+    end
+    total
   end
 
   def payroll_tax_rate
@@ -20,9 +24,9 @@ class CostingDecorator
     @visit.hours_count
   end
 
-  def total_labor_cost
-    total_labor_hours * labor_hour_rate
-  end
+  #def total_labor_cost
+  #  total_labor_hours * labor_hour_rate
+  #end
 
   def total_supplies_cost
     @visit.total_meals * supplies_plate

@@ -7,6 +7,11 @@ class Schedule < ActiveRecord::Base
   #validates :end_time, format: { with: VALID_TIME }
   validate :start_before_end
 
+  def cost
+    self.employee.hourly * self.hours
+  end
+
+
   def set_hours
     self.hours ||= ((self.end_time - self.start_time)/3600).to_f
   end

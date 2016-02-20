@@ -9,4 +9,7 @@
       .form-group
         = f.label "Last Name", class: "control-label"
         = f.text_field :last_name,  id: "last-name", class: "form-control"
+      .form-group
+        = f.label "Hourly Rate", class: "control-label"
+        = f.text_field :hourly, id: "hourly", class: "form-control"
       = f.submit "Add Employee", class: "btn btn-primary"

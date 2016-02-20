@@ -10,4 +10,7 @@
         .form-group
           =f.label "Last Name", class: "control-label"
           =f.text_field :last_name, class: "form-control"
+        .form-group
+          =f.label "Hourly", class: "control-label"
+          =f.text_field :hourly, class: "form-control"
         = button_to("Submit", {action: "update"}, class: "btn btn-primary")

@@ -4,5 +4,6 @@
     - @employees.each do |e|
       .row
         .col-md-3= e.full_name
+        .col-md-1= number_to_currency(e.hourly)
         .col-md-1= link_to "Edit", edit_employee_path(e)
         .col-md-1= link_to "Delete", e, method: :delete, data: {confirm:  "Are you sure?"}
