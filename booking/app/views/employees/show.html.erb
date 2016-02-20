@@ -1,9 +1,0 @@
-<div class = "container-fluid">
-  <div class = "row">
-    <div class = "col-md-4">
-      <%= @employee.full_name %> |
-        <%= link_to "Edit", edit_employee_path(@employee) %> |
-        <%= link_to "Delete", @employee, method: :delete, data: { confirm: "Are you sure?" } %>
-    </div>
-  </div>
-</div>
