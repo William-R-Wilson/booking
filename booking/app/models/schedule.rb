@@ -16,5 +16,9 @@ class Schedule < ActiveRecord::Base
       errors.add(:start_time, "cannot come after end time")
     end
   end
-  
+
+  def date
+    day.date
+  end
+
 end

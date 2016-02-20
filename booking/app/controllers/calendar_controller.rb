@@ -6,17 +6,23 @@ class CalendarController < ApplicationController
     @visit_dates = get_days(@visits)
   end
 
-  def get_days(visits)
-    visit_days = {}
-    visits.each do |v|
-      v.days.each do |d|
+  def show_schedules
+  end
+
+
+  def get_days(items)
+    days = {}
+    items.each do |i|
+      i.days.each do |d|  #item must have days associated
         day = d.date
-        visit_days[day] ||= []
-        visit_days[day] << v
+        days[day] ||= []
+        days[day] << i
       end
     end
-    visit_days
+    days
   end
+
+
 
 
 end

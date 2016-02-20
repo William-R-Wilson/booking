@@ -1,7 +1,18 @@
 class SchedulesController < ApplicationController
 
+  def get_dates
+    #set dates for query
+  end
+
+
+
+
   def index
-    @schedules = Schedule.all
+    @start_date = Date.civil(params[:start_date][:year].to_i,
+                  params[:start_date][:month].to_i, params[:start_date][:day].to_i)
+    @end_date = Date.civil(params[:end_date][:year].to_i,
+                params[:end_date][:month].to_i, params[:end_date][:day].to_i)
+    @days = Day.where("date BETWEEN ? AND ?", @start_date, @end_date)
   end
 
 

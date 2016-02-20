@@ -1,14 +1,14 @@
 <div class = "col-md-4 center col-md-offset-4">
-  <h2>Select Dates for Income/Expense</h2>
-  <%= form_tag("/report", method: "get") do %>
+  <h2>Select Dates for Schedules to View</h2>
+  <%= form_tag("/schedules", method: "get") do %>
 
     <div class = "form-group">Start Date:
-      <%= select_date Date.today.prev_month, prefix: :start_date, with_css_classes: true %></div><br>
+      <%= select_date Date.today, prefix: :start_date, with_css_classes: true %></div><br>
     <div class = "form-group">End Date:
       <%= select_date Date.today, prefix: :end_date, with_css_classes: true %></div><br>
 
     <div class="form-group">
-      <%= submit_tag("See report", class: "btn btn-primary") %>
+      <%= submit_tag("See Schedules", class: "btn btn-primary") %>
     <% end %>
 
 </div>

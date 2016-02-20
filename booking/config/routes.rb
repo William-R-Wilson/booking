@@ -19,8 +19,10 @@ Rails.application.routes.draw do
 
   resources :admin_pages
 
+  get 'schedules/get_dates' => 'schedules#get_dates', as: :get_dates
   resources :schedules, except: [:new]
   get 'schedule/new/:employee_id/:day_id' => 'schedules#new', as: :new_schedule
+
   #get 'schedule/:id' => 'schedules#show', as: :schedule
   #get 'schedules' => 'schedules#index', as: :schedules
   #post 'schedules/(.:format)' => 'schedules#create', as: :create_schedule

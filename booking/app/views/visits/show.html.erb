@@ -26,21 +26,21 @@
       </div>
   </div>
   <div class = "col-md-3">
-          <%= f.label :agreement_signed do %>
+          <div><%= f.label :agreement_signed do %>
             <%= f.check_box :agreement_signed %>  Agreement Signed?
-          <% end %>
-          <%= f.label :deposit_received do %>
+          <% end %></div>
+          <div><%= f.label :deposit_received do %>
             <%= f.check_box :deposit_received %>  Deposit Received?
-          <% end %>
-          <%= f.label :needs_projector do %>
+          <% end %></div>
+          <div><%= f.label :needs_projector do %>
             <%= f.check_box :needs_projector %>  Needs Projector
-          <% end %>
-          <%= f.label :needs_childcare do %>
+          <% end %></div>
+          <div><%= f.label :needs_childcare do %>
             <%= f.check_box :needs_childcare %>  Needs Childcare
-          <% end %>
-          <%= f.label :needs_stafftime do %>
+          <% end %></div>
+          <div><%= f.label :needs_stafftime do %>
             <%= f.check_box :needs_stafftime %>  Needs Staff Time
-          <% end %>
+          <% end %></div>
   </div>
           <div class = "col-md-1"><%= f.submit "Update", class: "btn btn-primary" %></div>
       <% end %><!-- end form -->
