@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220123346) do
+ActiveRecord::Schema.define(version: 20160220155800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cost_amounts", force: :cascade do |t|
+    t.decimal  "overhead"
+    t.decimal  "salary"
+    t.decimal  "plate_cost"
+    t.decimal  "payroll_tax"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "days", force: :cascade do |t|
     t.integer  "breakfast"

@@ -9,8 +9,9 @@ class ReportsController < ApplicationController
     @end_date = Date.civil(params[:end_date][:year].to_i,
                 params[:end_date][:month].to_i, params[:end_date][:day].to_i)
     @weeks_in_period = ((@end_date - @start_date)/7).to_f
-    @overhead_expense = overhead
-    @salary_expense = salary
+    cost = CostAmount.first
+    @overhead_expense = overhead(cost)
+    @salary_expense = salary(cost)
     #to get days with unassociated visit
     @unassociated_days = Day.where( 'date BETWEEN ? AND ?', @start_date, @end_date).where(visit_id: nil)
     @unassociated_hours = unassociated_hours
@@ -32,15 +33,15 @@ class ReportsController < ApplicationController
     end
 
     def unassociated_cost
-      (((@unassociated_hours * 15) * 1.0765) * 1.1) 
+      (((@unassociated_hours * 15) * 1.0765) * 1.1)
     end
 
-    def overhead
-      (61613/52) * @weeks_in_period
+    def overhead(c)
+      (c.overhead/52) * @weeks_in_period
     end
 
-    def salary
-      (47780/52) * @weeks_in_period
+    def salary(c)
+      (c.salary/52) * @weeks_in_period
     end
 
     def total_income(visits)

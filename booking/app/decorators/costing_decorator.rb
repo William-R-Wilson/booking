@@ -2,10 +2,11 @@ class CostingDecorator
 
   def initialize(visit)
     @visit = visit
+    @cost = CostAmount.first
   end
 
   def supplies_plate
-    7.41
+    @cost.plate_cost
   end
 
   def total_labor_cost
@@ -17,7 +18,7 @@ class CostingDecorator
   end
 
   def payroll_tax_rate
-    0.0765
+    @cost.payroll_tax
   end
 
   def total_labor_hours

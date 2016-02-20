@@ -1,0 +1,23 @@
+<div class = "col-md-4 col-md-offset-4">
+  <h2>Edit Costs</h2>
+  <%= form_for @cost, html: {class: "form-horzontal-center"} do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+    <div class = "form-group">
+      <%= f.label :overhead %>
+      <%= f.number_field :overhead, step: 0.01 %>
+    </div>
+    <div class = "form-group">
+      <%= f.label :salary %>
+      <%= f.number_field :salary, step: 0.01 %>
+    </div>
+    <div class = "form-group">
+      <%= f.label :payroll_tax %>
+      <%= f.number_field :payroll_tax, step: 0.01 %>
+    </div>
+    <div class = "form-group">
+      <%= f.label :plate_cost %>
+      <%= f.number_field :plate_cost, step: 0.01 %>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>
