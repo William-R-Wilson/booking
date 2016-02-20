@@ -18,3 +18,4 @@ development.env
 /log/*
 !/log/.keep
 /tmp
+.env
