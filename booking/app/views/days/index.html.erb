@@ -16,7 +16,8 @@
       <%= link_to day.visit.guest.name, visit_path(day.visit) %>
     <% end %></td>
     <td><%= day.calculate_hours %></td>
-    <td>Actions go here</td>
+    <td><%= link_to "Edit", edit_hours_path(day) %> |
+      <%= link_to "Delete", day, method: :delete, data: { confirm: "Are you sure?" } %></td>
   </tr>
 <% end %>
   </tbody>

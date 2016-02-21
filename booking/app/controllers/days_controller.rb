@@ -40,6 +40,16 @@ class DaysController < ApplicationController
     @days = Day.all
   end
 
+  def destroy
+    @day = Day.find(params[:id])
+    @day.destroy
+    respond_to do |format|
+      flash[:warning] = "Day #{@day.date} was deleted"
+      format.html {redirect_to days_url}
+    end
+  end
+
+
   def day_visit(day)
     today = Day.find(day)
     if today.visit == nil
@@ -50,7 +60,7 @@ class DaysController < ApplicationController
   end
 
   private
-  
+
 
     def day_params
       params.require(:day).permit(:id, :visit_id, :breakfast,
