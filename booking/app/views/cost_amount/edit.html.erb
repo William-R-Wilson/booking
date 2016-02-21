@@ -12,11 +12,20 @@
     </div>
     <div class = "form-group">
       <%= f.label :payroll_tax %>
-      <%= f.number_field :payroll_tax, step: 0.01 %>
+      <%= f.number_field :payroll_tax, step: 0.00001, max: 1.0 %>
     </div>
     <div class = "form-group">
       <%= f.label :plate_cost %>
       <%= f.number_field :plate_cost, step: 0.01 %>
+    </div>
+    <p>Target percentages</p>
+    <div class = "form-group">
+      <%= f.label :supplies_percentage %>
+      <%= f.number_field :supplies_percentage, step: 0.00001, max: 1.0 %>
+    </div>
+    <div class = "form-group">
+      <%= f.label :labor_percentage %>
+      <%= f.number_field :labor_percentage, step: 0.00001, max: 1.0 %>
     </div>
     <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>

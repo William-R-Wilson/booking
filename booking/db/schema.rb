@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220155800) do
+ActiveRecord::Schema.define(version: 20160221114349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20160220155800) do
     t.decimal  "salary"
     t.decimal  "plate_cost"
     t.decimal  "payroll_tax"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.decimal  "labor_percentage"
+    t.decimal  "supplies_percentage"
   end
 
   create_table "days", force: :cascade do |t|

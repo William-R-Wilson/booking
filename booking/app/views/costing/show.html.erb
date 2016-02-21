@@ -1,29 +1,55 @@
 
   <h2>Costs</h2>
-
+  <div><%= link_to "Edit Visit Details", visit_path(@visit) %></div>
   <h3><%= @visit.guest.name %></h3>
-  <div class = "col-md-4">
+  <div class = "col-md-8">
   <table class = "table-condensed">
     <tbody>
       <tr><td>Total income for this visit:</td><td><%= number_to_currency @visit.income %></td></tr>
 
       <tr><th>Total supplies cost:</th></tr>
-      <tr><td><%= number_to_currency @visit_costs.supplies_plate %> per plate x <%=
-            @visit.total_meals %> = </td> <td><%= number_to_currency @visit_costs.total_supplies_cost %></td></tr>
+      <tr>
+        <td>
+          <%= number_to_currency @visit_costs.supplies_plate %> per plate x <%=
+            @visit.total_meals %> = </td> <td><%= number_to_currency @visit_costs.total_supplies_cost %>
+        </td>
+        <td>
+          (Average based on actual costs/meals served)
+        </td>
 
+
+      </tr>
+      <tr>
+        <td>
+          Target supplies percentage: <%= number_to_percentage((@cost.supplies_percentage * 100), precision: 1) %>
+        </td>
+        <td></td>
+        <td>
+          Target supplies cost: <%= number_to_currency(@visit.income * @cost.supplies_percentage) %>
+        </td>
+
+      </tr>
       <tr><th>Labor Cost</th></tr>
-      <tr><td>Total hours required:</td><td>  <%= @visit_costs.total_labor_hours %><td></tr>
-      <tr><td>Direct labor cost:</td><td> <%= number_to_currency @visit_costs.total_labor_cost %><td></tr>
-      <tr><td>Vacation accrual:</td><td> <%= number_to_currency @visit_costs.vacation_accrual %><td></tr>
-      <tr><td>Payroll taxes:</td><td> <%= number_to_currency @visit_costs.payroll_taxes %><td></tr>
-      <tr><td>Total labor cost:</td><td>  <%= number_to_currency @visit_costs.total_payroll_cost %><td></tr>
-      <tr><td>Total cost:</td><td> <%= number_to_currency @visit_costs.cost_total %><td></tr>
-      <tr><td>Remaining:</td><td><%= number_to_currency(@visit.income - @visit_costs.cost_total) %><td></tr>
+      <tr><td>Total hours Scheduled:</td><td>  <%= @visit_costs.total_labor_hours %></td></tr>
+      <tr>
+        <td>Direct labor cost:</td><td> <%= number_to_currency @visit_costs.total_labor_cost %></td>
+
+      </tr>
+      <tr><td>Vacation accrual:</td><td> <%= number_to_currency @visit_costs.vacation_accrual %></td></tr>
+      <tr><td>Payroll taxes:</td><td> <%= number_to_currency @visit_costs.payroll_taxes %></td>
+        <td>Target labor percentage: <%= number_to_percentage((@cost.labor_percentage * 100), precision: 1) %></td>
+      </tr>
+      <tr><td>Total labor cost:</td><td>  <%= number_to_currency @visit_costs.total_payroll_cost %></td>
+
+        <td>Target labor cost: <%= number_to_currency(@visit.income * @cost.labor_percentage) %></td>
+
+      </tr>
+      <tr><td>Total cost:</td><td> <%= number_to_currency @visit_costs.cost_total %></td>
+      </tr>
+      <tr><td>Remaining:</td><td><%= number_to_currency(@visit.income - @visit_costs.cost_total) %></td></tr>
     </tbody>
   </table>
   </div>
-
-  <div class = "col-md-2">  <%= link_to "Edit Visit Details", visit_path(@visit) %></div>
 
   <div class = "col-md-4">
     <div>Click on the date to add employee schedules</div>

@@ -5,6 +5,7 @@ class CostingController < ApplicationController
   def show
     @visit = Visit.find(params[:id])
     @visit_costs = CostingDecorator.new(@visit)
+    @cost = CostAmount.first
   end
 
   def edit

@@ -28,7 +28,7 @@ private
   end
 
   def cost_amount_params
-    params.require(:cost_amount).permit(:overhead, :salary, :payroll_tax, :plate_cost)
+    params.require(:cost_amount).permit(:overhead, :salary, :payroll_tax, :plate_cost, :supplies_percentage, :labor_percentage)
   end
 
 end
