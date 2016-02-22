@@ -5,6 +5,14 @@ class ReportingDecorator
     @visit_costs = create_costs(@visits)
   end
 
+  def all_visits_meals
+    sum = 0
+    @visits.each do |v|
+      sum += v.total_meals
+    end
+    sum
+  end
+
   def create_costs(visits)
     arr = []
     visits.each do |v|

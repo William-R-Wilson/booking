@@ -19,6 +19,9 @@
   <div>Target percentage: <%= number_to_percentage( @cost.supplies_percentage * 100, precision: 1 ) %></div>
   <div>Actual percentage: <%= number_to_percentage(@supplies_percent, precision: 1) %></div>
 </div>
+<div class = "col-md-4">
+  <div>Total meals served this period: <%= @data.all_visits_meals %></div>
+</div>
 </div><!-- end row -->
 <div class = "row spacer"></div>
 <div class = "row">
