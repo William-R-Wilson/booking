@@ -12,16 +12,15 @@ class ReportsController < ApplicationController
     @cost = CostAmount.first
     @overhead_expense = overhead(@cost)
     @salary_expense = salary(@cost)
-    #to get days with unassociated visit
     @unassociated_days = Day.where( 'date BETWEEN ? AND ?', @start_date, @end_date).where(visit_id: nil)
     @unassociated_hours = unassociated_hours
     @unassociated_cost = unassociated_cost(@cost)
-    #need to figure out how to total up expenses for these days
     @visits = Visit.where(  'start_date BETWEEN ? AND ?', @start_date, @end_date)
     @total_income = total_income(@visits)
-    @data_for_visits = ReportingDecorator.new(@visits)
-    @total_labor = @unassociated_cost + @data_for_visits.all_visit_labor_costs
+    @data = ReportingDecorator.new(@visits)
+    @total_labor = @unassociated_cost + @data.all_visit_labor_costs
     @labor_percent = (@total_labor/@total_income) * 100
+    @supplies_percent = (@data.all_visit_supplies_costs/@total_income) * 100
   end
 
   private

@@ -25,10 +25,6 @@ class CostingDecorator
     @visit.hours_count
   end
 
-  #def total_labor_cost
-  #  total_labor_hours * labor_hour_rate
-  #end
-
   def total_supplies_cost
     @visit.total_meals * supplies_plate
   end

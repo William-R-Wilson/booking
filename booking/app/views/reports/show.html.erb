@@ -4,22 +4,24 @@
   <div class = "col-md-4">
   <div>Weeks in period:  <%= number_with_precision @weeks_in_period, precision: 1 %></div>
   <div>Total income for this period: <%= number_to_currency @total_income %></div>
-  <div>Total labor hours for this period: <%= @data_for_visits.all_visit_hours %></div>
+  <div>Total labor hours for this period: <%= @data.all_visit_hours + @unassociated_hours %></div>
 
 
-  <div>Total direct costs for the period: <%= number_to_currency @data_for_visits.total_visit_costs %></div>
+  <div>Total direct costs for the period: <%= number_to_currency (@data.total_visit_costs + @unassociated_cost) %></div>
   <div>Overhead costs: <%= number_to_currency @overhead_expense %></div>
   <div>Salary costs:  <%= number_to_currency @salary_expense %></div>
-  <div>Remaining:  <%= number_to_currency (@total_income - @data_for_visits.total_visit_costs - @overhead_expense - @salary_expense) %></div>
+  <div>Remaining:  <%= number_to_currency (@total_income -
+                    @data.total_visit_costs - @overhead_expense -
+                    @salary_expense) %></div>
 </div>
 <div class = "col-md-4">
   <div>Total labor costs for this period: <%=
         number_to_currency(@total_labor) %></div>
   <div>Target percentage: <%= number_to_percentage @cost.labor_percentage * 100, precision: 1 %></div>
   <div>Actual percentage: <%= number_to_percentage(@labor_percent, precision: 1) %></div>
-  <div>Total supplies costs for the period: <%= @data_for_visits.all_visit_supplies_costs %></div>
+  <div>Total supplies costs for the period: <%= number_to_currency @data.all_visit_supplies_costs %></div>
   <div>Target percentage: <%= number_to_percentage( @cost.supplies_percentage * 100, precision: 1 ) %></div>
-  <div>Actual percentage: <%= number_to_percentage((@data_for_visits.all_visit_supplies_costs/@total_income) * 100) %></div>
+  <div>Actual percentage: <%= number_to_percentage(@supplies_percent, precision: 1) %></div>
 </div>
 </div><!-- end row -->
 <div class = "row spacer"></div>
