@@ -20,6 +20,8 @@ class ReportsController < ApplicationController
     @visits = Visit.where(  'start_date BETWEEN ? AND ?', @start_date, @end_date)
     @total_income = total_income(@visits)
     @data_for_visits = ReportingDecorator.new(@visits)
+    @total_labor = @unassociated_cost + @data_for_visits.all_visit_labor_costs
+    @labor_percent = (@total_labor/@total_income) * 100
   end
 
   private

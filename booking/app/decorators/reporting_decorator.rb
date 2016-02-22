@@ -22,6 +22,22 @@ class ReportingDecorator
     sum
   end
 
+  def all_visit_labor_costs
+    sum = 0
+    @visit_costs.each do |v|
+      sum += v.total_labor_cost
+    end
+    sum * 1.1 * 1.0765  #needs work
+  end
+
+  def all_visit_supplies_costs
+    sum = 0
+    @visit_costs.each do |v|
+      sum += v.total_supplies_cost
+    end
+    sum
+  end
+
 
   def all_visits
     @visits
