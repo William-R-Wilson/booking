@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
     @unassociated_days = Day.where( 'date BETWEEN ? AND ?', @start_date, @end_date).where(visit_id: nil)
     @unassociated_hours = unassociated_hours
     @unassociated_cost = unassociated_cost(@cost)
-    @visits = Visit.where(  'start_date BETWEEN ? AND ?', @start_date, @end_date)
+    @visits = Visit.where(  'start_date BETWEEN ? AND ?', @start_date, @end_date )
     @total_income = total_income(@visits)
     @data = ReportingDecorator.new(@visits)
     @total_direct = @data.total_visit_costs + @unassociated_cost

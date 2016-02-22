@@ -26,31 +26,32 @@
 <div class = "row spacer"></div>
 <div class = "row">
   <div class = "col-md-12">
-  <table class = "table">
-    <thead>
-      <th>Guest Name</th>
-      <th>Income</th>
-      <th>Labor Hours</th>
-      <th>Total Expense</th>
-      <th>Net Income</th>
-    </thead>
-    <tbody>
-      <% @visits.each do |v| %>
-        <tr>
-          <td><%= link_to v.guest.name, costing_path(v.id) %></td>
-          <td><%= number_to_currency v.income %></td>
-          <td><%= v.hours_count %>
-          <td><%= number_to_currency v.total_costs %></td>
-          <td><%= number_to_currency (v.income - v.total_costs) %></td>)
-        </tr>
-      <% end %>
-        <tr>
-          <td><%= @unassociated_days.count %> Unassociated Days</td>
-          <td>-</td>
-          <td><%= @unassociated_hours %></td>
-          <td><%= number_to_currency @unassociated_cost %></td>
-        </tr>
-    </tbody>
-  </table>
-</div>
-</div>
+    <table class = "table">
+      <thead>
+        <th>Guest Name</th>
+        <th>Income</th>
+        <th>Labor Hours</th>
+        <th>Total Expense</th>
+        <th>Net Income</th>
+      </thead>
+      <tbody>
+        <% @visits.each do |v| %>
+          <tr>
+            <td><%= link_to v.guest.name, costing_path(v.id) %></td>
+            <td><%= number_to_currency v.income %></td>
+            <td><%= v.hours_count %></td>
+            <td><%= number_to_currency v.total_costs %></td>
+            <td><%= number_to_currency (v.income - v.total_costs) %></td>
+          </tr>
+        <% end %>
+          <tr>
+            <td><%= @unassociated_days.count %> Unassociated Days</td>
+            <td>-</td>
+            <td><%= @unassociated_hours %></td>
+            <td><%= number_to_currency @unassociated_cost %></td>
+            <td></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
