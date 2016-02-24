@@ -1,0 +1,6 @@
+<h3>Create a new Work Type</h3>
+  <%= form_for @worktype do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>

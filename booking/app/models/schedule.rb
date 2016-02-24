@@ -1,6 +1,7 @@
 class Schedule < ActiveRecord::Base
   belongs_to :day
   belongs_to :employee
+  has_one :work_type
   before_create :set_hours
   #VALID_TIME = /\d?\d:\d\d\s[ap]m/
   #validates :start_time, format: { with: VALID_TIME }

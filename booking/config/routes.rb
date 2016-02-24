@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :days
   resources :employees
   resources :prices
+  resources :work_types
   resources :cost_amount, only: [:edit, :update]
   #resources :reports
   get 'reports' => 'reports#index'
