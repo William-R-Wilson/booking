@@ -1,6 +1,6 @@
 class WorkType < ActiveRecord::Base
 
-  belongs_to :schedule
+  has_many :schedules
 
   validates :name, presence: true
   validates :name , uniqueness: true

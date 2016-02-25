@@ -34,10 +34,10 @@
               <td><%= s.end_time.strftime("%l:%M %P") %></td>
             <% end %>
             <td><%= s.hours %></td>
-            <% if s.worktype_id == nil %>
+            <% if s.work_type_id == nil %>
               <td> - </td>
             <% else %>
-              <td><%= s.worktype_id %></td>
+              <td><%= s.work_type.name %></td>
             <% end %>
             <td><%= link_to "Edit", edit_schedule_path(s) %> |
             <%= link_to "Delete", s, method: :delete, date: { confirm: "Are you sure?" } %> </td>

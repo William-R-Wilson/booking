@@ -1,7 +1,7 @@
 class Schedule < ActiveRecord::Base
   belongs_to :day
   belongs_to :employee
-  has_one :work_type
+  belongs_to :work_type
   before_create :set_hours
   before_update :set_hours
   #VALID_TIME = /\d?\d:\d\d\s[ap]m/

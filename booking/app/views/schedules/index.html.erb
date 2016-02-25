@@ -3,9 +3,9 @@
     <div class = "row">
       <div class = "col-md-4">
         <strong><%= link_to abbreviated_date(d.date), edit_hours_path(d) %></strong>
-          <ul>
+          <ul class = "list-group">
             <% d.schedules.each do |s| %>
-              <li><%= s.employee.full_name %>
+              <li class = "list-group-item"><%= s.employee.full_name %>
               <%= formatted_time s.start_time %> to
               <%= formatted_time s.end_time %>, <%= s.hours %> hours
               <%= link_to "Edit", edit_schedule_path(s) %></li>

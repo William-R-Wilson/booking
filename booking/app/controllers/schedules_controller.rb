@@ -66,7 +66,7 @@ class SchedulesController < ApplicationController
 
 private
   def schedule_params
-    params.require(:schedule).permit(:day_id, :employee_id, :hours, :start_time, :end_time, :worktype_id)
+    params.require(:schedule).permit(:day_id, :employee_id, :hours, :start_time, :end_time, :work_type_id)
   end
 
 
