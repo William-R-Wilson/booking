@@ -16,6 +16,7 @@
         <th>Start Time</th>
         <th>End Time</th>
         <th>Hours</th>
+        <th>Type</th>
         <th></th></tr>
       </thead>
       <tbody>
@@ -33,6 +34,11 @@
               <td><%= s.end_time.strftime("%l:%M %P") %></td>
             <% end %>
             <td><%= s.hours %></td>
+            <% if s.worktype_id == nil %>
+              <td> - </td>
+            <% else %>
+              <td><%= s.worktype_id %></td>
+            <% end %>
             <td><%= link_to "Edit", edit_schedule_path(s) %> |
             <%= link_to "Delete", s, method: :delete, date: { confirm: "Are you sure?" } %> </td>
           </tr>

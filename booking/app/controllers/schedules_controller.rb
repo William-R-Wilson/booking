@@ -18,6 +18,7 @@ class SchedulesController < ApplicationController
 
   def new
     @schedule = Schedule.new(day_id: params[:day_id], employee_id: params[:employee_id])
+    @worktypes = WorkType.all
   end
 
   def create
@@ -65,7 +66,7 @@ class SchedulesController < ApplicationController
 
 private
   def schedule_params
-    params.require(:schedule).permit(:day_id, :employee_id, :hours, :start_time, :end_time)
+    params.require(:schedule).permit(:day_id, :employee_id, :hours, :start_time, :end_time, :worktype_id)
   end
 
 

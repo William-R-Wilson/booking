@@ -12,10 +12,14 @@
         <div class = "form-group">
           <%= f.label "End Time" %><%= f.time_field :end_time,
               pattern: '\d?\d:\d\d\s[ap]m', title: "use the format:  6:00 am" %>
-        <div class = "form-group">
-          <%= f.hidden_field :employee_id %><%= f.hidden_field :day_id %>
         </div>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
+        <div class = "form-group">
+          <%= f.collection_select(:worktype_id, WorkType.all, :id, :name, {}, {class: "form-control"}) %>
+       </div>
+        <%= f.hidden_field :employee_id %><%= f.hidden_field :day_id %>
+        <div>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        </div>
       <% end %>
     </div>
   </div>

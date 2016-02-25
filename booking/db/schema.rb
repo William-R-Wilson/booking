@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224130751) do
+ActiveRecord::Schema.define(version: 20160225001432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160224130751) do
     t.decimal "hours"
     t.time    "start_time"
     t.time    "end_time"
+    t.integer "worktype_id"
   end
 
   create_table "services", force: :cascade do |t|

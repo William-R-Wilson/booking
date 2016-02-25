@@ -7,11 +7,15 @@
           <div class = "form-group">
             <%= f.label "Start Time" %><%= f.time_field :start_time,
                 pattern: '\d?\d:\d\d\s[ap]m', title: "use the format:  6:00 am",
-                autofocus: true %>
+                autofocus: true, value: formatted_time(@schedule.start_time) %>
           </div>
           <div class = "form-group">
             <%= f.label "End Time" %><%= f.time_field :end_time,
-                pattern: '\d?\d:\d\d\s[ap]m', title: "use the format:  6:00 am" %>
+                pattern: '\d?\d:\d\d\s[ap]m', title: "use the format:  6:00 am", value: formatted_time(@schedule.end_time) %>
+          </div>
+          <div class = "form-group">
+            <%= f.collection_select(:worktype_id, WorkType.all, :id, :name, {}, {class: "form-control"}) %>
+         </div>
           <div class = "form-group">
             <%= f.hidden_field :employee_id %><%= f.hidden_field :day_id %>
           </div>

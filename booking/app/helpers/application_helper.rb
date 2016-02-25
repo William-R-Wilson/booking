@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def formatted_time(t)
-    t.strftime("%l:%M %P")
+    t.strftime("%I:%M %P")
   end
 
 end
