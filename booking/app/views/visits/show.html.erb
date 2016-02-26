@@ -8,7 +8,6 @@
     <div><%= @visit.guest.city %>, <%= @visit.guest.state %> <%= @visit.guest.zip %></div>
     <div><%= @visit.guest.email %></div>
     <div><%= @visit.guest.telephone %></div>
-    <div><%= @visit.guest.about %></div>
   </div>
   <div class="col-md-9">
     <%= form_for @visit do |f| %>
@@ -101,3 +100,5 @@
 
 <div class = "row spacer"></div>
 <div>Notes:  <%= @visit.notes %></div>
+<div class = "row spacer"></div>
+<div><%= @visit.guest.about %></div>

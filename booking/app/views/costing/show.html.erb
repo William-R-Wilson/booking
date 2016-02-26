@@ -2,7 +2,7 @@
   <h2>Costs</h2>
   <div><%= link_to "Edit Visit Details", visit_path(@visit) %></div>
   <h3><%= @visit.guest.name %></h3>
-  <div class = "col-md-8">
+  <div class = "col-md-6">
   <table class = "table-condensed">
     <tbody>
       <tr><td>Total income for this visit:</td><td><%= number_to_currency @visit.income %></td></tr>
@@ -51,7 +51,7 @@
   </table>
   </div>
 
-  <div class = "col-md-4">
+  <div class = "col-md-6">
     <div>Click on the date to add employee schedules</div>
     <table class = "table-condensed table-bordered">
     <thead>
