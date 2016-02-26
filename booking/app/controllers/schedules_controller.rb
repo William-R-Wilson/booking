@@ -1,9 +1,14 @@
 class SchedulesController < ApplicationController
 
   def get_dates
-    #set dates for query
+    #set dates for query or choose employee
+    @employees = Employee.all
   end
 
+  def by_employee
+    @employee = Employee.find(params[:id])
+    @schedules = Schedule.where(employee_id: @employee.id)
+  end
 
 
 

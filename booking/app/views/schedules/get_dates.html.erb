@@ -11,4 +11,10 @@
       <%= submit_tag("See Schedules", class: "btn btn-primary") %>
     <% end %>
 
+  <h3>Or, pick an employee</h3>
+  <ul class = "list-group">
+    <% @employees.each do |e| %>
+    <li class = "list-group-item"><%= link_to e.full_name, by_employee_path(e.id) %></li>
+    <% end %>
+  </ul>
 </div>

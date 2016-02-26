@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :admin_pages
 
   get 'schedules/get_dates' => 'schedules#get_dates', as: :get_dates
+  get 'schedules/by_employee/:id' => 'schedules#by_employee', as: :by_employee
   resources :schedules, except: [:new]
   get 'schedule/new/:employee_id/:day_id' => 'schedules#new', as: :new_schedule
 

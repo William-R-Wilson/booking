@@ -1,0 +1,10 @@
+<h3><%= @employee.full_name %></h3>
+<ul class = "list-group">
+  <% @schedules.each do |s| %>
+    <li class = "list-group-item">
+      <%= link_to s.date, edit_schedule_path(s) %>, <%= s.hours %> hours,
+        <%= s.work_type.name unless s.work_type_id == nil  %>
+
+    </li>
+  <% end %>
+</ul>
