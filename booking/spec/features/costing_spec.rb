@@ -35,7 +35,7 @@ describe "Costing" do
   describe "Show" do
     it "shows basic cost info" do
       visit costing_path(@visit1)
-      within "h3" do
+      within "h2" do
         expect(page).to have_content "Group"
       end
     end

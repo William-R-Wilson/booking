@@ -11,7 +11,7 @@ describe "Employees" do
 
       it "has a list of employees" do
         visit employees_path
-        within "h1" do
+        within "h2" do
           expect(page).to have_content "All Employees"
         end
         expect(Employee.count).to eq(2)
