@@ -2,47 +2,40 @@ require 'rails_helper'
 
 describe Visit, :type => :model do
   context "created with valid params" do
-    before(:each) do
-      @p = Price.create
-      @v = Visit.new(num_attendees: 20, start_date: "2016-01-01", end_date: "2016-01-02")
+    before(:all) do
+      @p = Price.create(tier: "test")
+      @g = Guest.create(email: "guest@example.com", address: "123 123rd St", city: "Wetumpka", state: "AL", zip: "12345", name: "Test Group", bill_to: "Test Group")
+      @v = Visit.create(num_attendees: 30, start_date: "2016-02-02", end_date: "2016-02-05", guest_id: @g.id, price_id: @p.id)
     end
     it "has a Price object associated upon initialize" do
-      expect(@v.price).to_not be_nil
+      #@visit = FactoryGirl.create(:visit)
+      expect(@v.price_id).to_not be_nil
     end
     it "is valid when it has a start_date, end_date, and num_attendees" do
       expect(@v.valid?).to eq(true)
     end
     it "calculates the number of days" do
-      expect(@v.num_days).to eq(2)
+      expect(@v.num_days).to eq(4)
     end
-    it "calculates total income"
-      #can't do this because create_days method is in the controller
-      #maybe need an integration test? 
-      #expect(@v.income).to eq()
   end
 
   context "created with invalid params" do
-    before(:each) do
-      @p = Price.create
+    before(:all) do
+      @p = Price.create(tier: "test")
+      @g = Guest.create(email: "guest@example.com", address: "123 123rd St", city: "Wetumpka", state: "AL", zip: "12345", name: "Test Group", bill_to: "Test Group")
     end
+
     it "validates presence of num_attendees" do
-      x = Visit.new(start_date: "2016-01-01", end_date: "2016-01-02")
+      x = Visit.new(start_date: "2016-01-01", end_date: "2016-01-02", guest_id: @g.id, price_id: @p.id)
       expect(x.valid?).to eq(false)
     end
-    it "validates start_date presence" do
-      x = Visit.new(num_attendees: 20, end_date: "2016-01-02")
+
+    it "validates start_date is before end_date" do
+      x = Visit.new(num_attendees: 20, start_date: "2016-01-03", end_date: "2016-01-02")
       expect(x.valid?).to eq(false)
     end
-    it "validates end_date presence" do
-      x = Visit.new(num_attendees: 20, start_date: "2016-01-01")
-      expect(x.valid?).to eq(false)
-    end
+
   end
 
-  it "calculates total income for the visit"
-    #this test should require most other methods in the model
-    #in order to work
-    #might need to be tested from the controller in order to keep from building
-    #the days in this test
 
 end
