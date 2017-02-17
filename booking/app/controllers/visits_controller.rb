@@ -4,6 +4,8 @@ class VisitsController < ApplicationController
     @visit = Visit.new
     if session[:guest]
       @guest = session[:guest]
+    else
+      @guest = Guest.first
     end
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
     @statuses = Visit.statuses
