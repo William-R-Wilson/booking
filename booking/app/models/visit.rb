@@ -12,7 +12,7 @@ class Visit < ActiveRecord::Base
   accepts_nested_attributes_for :days
   enum status: [:tentative, :confirmed, :billed, :paid]
   after_initialize :init_price
-  default_scope { order(start_date: :asc) }
+  default_scope { order(start_date: :desc) }
 
   def init_price
     if self.price_tier == nil

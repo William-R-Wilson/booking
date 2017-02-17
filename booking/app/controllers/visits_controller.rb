@@ -74,7 +74,7 @@ class VisitsController < ApplicationController
   end
 
   def index
-    @visits = Visit.all.order(start_date: :asc)
+    @visits = Visit.paginate(page: params[:page], per_page: 15) 
   end
 
   def destroy
