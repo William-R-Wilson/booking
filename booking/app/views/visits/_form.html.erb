@@ -16,7 +16,7 @@
                 <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options, selected: "default"), {}, {class: "form-control"}) %>
       </div>
       <div class = "form-group">
-        <%= f.label "Group:" %><%= f.select(:guest_id, @guest_options, {}, {class: "form-control"}) %>
+        <%= f.label "Group:" %><%= f.select(:guest_id, options_for_select(@guest_options, @guest["id"]), {}, {class: "form-control"}) %>
       </div>
       <div class = "form-group">
         <%= f.label "Purpose of Visit" %><%= f.text_area(:purpose, class: "form-control") %>

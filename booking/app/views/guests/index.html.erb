@@ -1,6 +1,10 @@
 <ul>
   <% @guests.each do |guest| %>
-    <li><%= link_to guest.name, guest_path(guest) %></li>
+    <li><%= link_to guest.name, guest_path(guest) %>
+
+      <% if !guest.visits.any? %>
+        | <%= link_to "Delete", guest, method: :delete, data: { confirm: "Are you sure you want to delete #{guest.name}?"} %></li>
+      <% end %>
     <% guest.visits.each do |visit| %>
       <ul>
         <li><%= link_to formatted_date(visit.start_date), visit_path(visit) %></li>

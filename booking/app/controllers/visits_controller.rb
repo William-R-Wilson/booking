@@ -2,6 +2,9 @@ class VisitsController < ApplicationController
 
   def new
     @visit = Visit.new
+    if session[:guest]
+      @guest = session[:guest]
+    end
     @guest_options = Guest.all.map { |g| [g.name, g.id] }
     @statuses = Visit.statuses
     @tier_options = Price.all.map { |p| [p.tier] }
@@ -87,7 +90,7 @@ class VisitsController < ApplicationController
       params.require(:visit).permit(:guest_id, :num_attendees, :start_date,
                     :end_date, :status, :needs_projector, :needs_stafftime,
                     :needs_childcare, :price_tier, :notes, :purpose,
-                    :agreement_signed, :deposit_received, 
+                    :agreement_signed, :deposit_received,
                     days_attributes: [:id, :breakfast, :lunch, :dinner, :dorm,
                     :hh, :lodge, :date, :waive_facility_rental])
     end
