@@ -28,12 +28,18 @@
 
           <div>
             <ul class = "nav navbar-nav">
-              <li><a href="/guests/new">Add a new group</a></li>
-              <li><a href="/visits/new">Add a visit</a></li>
+              <% if can? :create, Guest %>
+                <li><a href="/guests/new">Add a new group</a></li>
+              <% end %>
+              <% if can? :create, Visit %>
+                <li><a href="/visits/new">Add a visit</a></li>
+              <% end %>
               <li><a href="/visits">View all visits</a></li>
               <li><a href="/guests">View all guests</a></li>
               <li><a href="/calendar">Calendar</a></li>
-              <li><a href="/admin_pages">Admin Menu</a></li>
+              <% if can? :create, Employee %>
+                <li><a href="/admin_pages">Admin Menu</a></li>
+              <% end %>
             </ul>
           </div>
 

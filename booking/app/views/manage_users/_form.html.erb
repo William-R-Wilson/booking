@@ -18,5 +18,10 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :role %><br />
+    <%= f.select :role, ["admin", "employee"], {}, {class: "form-control"} %>
+  </div>
     <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
