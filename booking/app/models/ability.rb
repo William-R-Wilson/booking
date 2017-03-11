@@ -7,7 +7,7 @@ class Ability
        user ||= current_user # guest user (not logged in)
        if user.role == "admin"
          can :manage, :all
-       if user.role == "employee"
+       elsif user.role == "employee"
         can :read, :all
        else
          can :manage, :all
