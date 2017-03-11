@@ -1,4 +1,8 @@
-<div><%= link_to @guest.name, edit_guest_path(@guest) %></div>
+<% if can? :edit, Guest %>
+  <div><%= link_to @guest.name, edit_guest_path(@guest) %></div>
+<% else %>
+  <div><%= @guest.name %></div>
+<% end %>
 <div><%= @guest.bill_to %></div>
 <div><%= @guest.address %></div>
 <div><%= @guest.address2 %><div>

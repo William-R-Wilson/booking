@@ -39,6 +39,8 @@
               <li><a href="/calendar">Calendar</a></li>
               <% if can? :create, Employee %>
                 <li><a href="/admin_pages">Admin Menu</a></li>
+              <% else %>
+                <li><%= link_to "Schedules", get_dates_path %></li>
               <% end %>
             </ul>
           </div>

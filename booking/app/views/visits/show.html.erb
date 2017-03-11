@@ -1,6 +1,8 @@
 <div class="row">
   <div class = "col-md-3">
-    <div><%= link_to "View Costs/Set Schedules", costing_path(@visit) %></div>
+    <% if can? :update, Visit %>
+      <div><%= link_to "View Costs/Set Schedules", costing_path(@visit) %></div>
+    <% end %>
     <strong><%= @visit.guest.name %></strong>
     <div><%= @visit.guest.bill_to %></div>
     <div><%= @visit.guest.address %></div>
@@ -10,39 +12,41 @@
     <div><%= @visit.guest.telephone %></div>
   </div>
   <div class="col-md-9">
-    <%= form_for @visit do |f| %>
-      <div class = "col-md-3">
-      <div class = "form-group">
-        <div><%= f.label "Notes" %><%= f.text_area(:notes, class: "form-control") %></div>
-      </div>
-    </div>
+  <% if can? :update, Visit %>
+      <%= form_for @visit do |f| %>
+        <div class = "col-md-3">
+          <div class = "form-group">
+            <div><%= f.label "Notes" %><%= f.text_area(:notes, class: "form-control") %></div>
+          </div>
+        </div>
 
-  <div class = "col-md-2">
-      <div class="form-group">
-        <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
-        <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options, selected: @visit.price_tier),
-                                              {}, {class: "form-control"}) %>
-      </div>
-  </div>
-  <div class = "col-md-3">
-          <div><%= f.label :agreement_signed do %>
-            <%= f.check_box :agreement_signed %>  Agreement Signed?
-          <% end %></div>
-          <div><%= f.label :deposit_received do %>
-            <%= f.check_box :deposit_received %>  Deposit Received?
-          <% end %></div>
-          <div><%= f.label :needs_projector do %>
-            <%= f.check_box :needs_projector %>  Needs Projector
-          <% end %></div>
-          <div><%= f.label :needs_childcare do %>
-            <%= f.check_box :needs_childcare %>  Needs Childcare
-          <% end %></div>
-          <div><%= f.label :needs_stafftime do %>
-            <%= f.check_box :needs_stafftime %>  Needs Staff Time
-          <% end %></div>
-  </div>
-          <div class = "col-md-1"><%= f.submit "Update", class: "btn btn-primary" %></div>
-      <% end %><!-- end form -->
+    <div class = "col-md-2">
+        <div class="form-group">
+          <%= f.label "Status:" %><%= f.select(:status, Visit.statuses.keys, {}, {class: "form-control"}) %>
+          <%= f.label "Pricing:" %><%= f.select(:price_tier, options_for_select(@tier_options, selected: @visit.price_tier),
+                                                {}, {class: "form-control"}) %>
+        </div>
+    </div>
+    <div class = "col-md-3">
+            <div><%= f.label :agreement_signed do %>
+              <%= f.check_box :agreement_signed %>  Agreement Signed?
+            <% end %></div>
+            <div><%= f.label :deposit_received do %>
+              <%= f.check_box :deposit_received %>  Deposit Received?
+            <% end %></div>
+            <div><%= f.label :needs_projector do %>
+              <%= f.check_box :needs_projector %>  Needs Projector
+            <% end %></div>
+            <div><%= f.label :needs_childcare do %>
+              <%= f.check_box :needs_childcare %>  Needs Childcare
+            <% end %></div>
+            <div><%= f.label :needs_stafftime do %>
+              <%= f.check_box :needs_stafftime %>  Needs Staff Time
+            <% end %></div>
+    </div>
+            <div class = "col-md-1"><%= f.submit "Update", class: "btn btn-primary" %></div>
+        <% end %><!-- end form -->
+    <% end %><!-- end if can? update visit -->
 </div><!-- end col-md-9 -->
 </div><!-- end row class -->
 <div class = "row spacer"></div>
@@ -88,7 +92,11 @@
   <thead>
     <th>Date:</th>
     <% @visit.days.each do |day| %>
-      <th><%= link_to abbreviated_date(day.date), edit_day_path(day) %></th>
+      <% if can? :update, Visit %>
+        <th><%= link_to abbreviated_date(day.date), edit_day_path(day) %></th>
+      <% else %>
+        <th><%= abbreviated_date(day.date) %></th>
+      <% end %>
     <% end %>
     <th>Totals</th>
     <th>Price</th>

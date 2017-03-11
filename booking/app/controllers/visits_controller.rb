@@ -1,5 +1,6 @@
 class VisitsController < ApplicationController
-
+  load_and_authorize_resource
+  
   def new
     @visit = Visit.new
     if session[:guest]
@@ -74,7 +75,7 @@ class VisitsController < ApplicationController
   end
 
   def index
-    @visits = Visit.paginate(page: params[:page], per_page: 15) 
+    @visits = Visit.paginate(page: params[:page], per_page: 15)
   end
 
   def destroy

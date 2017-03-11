@@ -15,8 +15,11 @@
     <td><%= formatted_date visit.start_date %></td>
     <td><%= formatted_date visit.end_date %></td>
     <td>
-    <%= link_to "Show", visit_path(visit) %> | <%= link_to "Delete", visit,
-        method: :delete, data: { confirm: "Are you sure?" } %> | <%= link_to "Costs", costing_path(visit) %></td>
+    <%= link_to "Show", visit_path(visit) %> |
+    <% if can? :delete, Visit %>
+      <%= link_to "Delete", visit, method: :delete, data: { confirm: "Are you sure?" } %>
+       | <% end %>
+      <%= link_to "Costs", costing_path(visit) %></td>
   </tr>
 <% end %>
 </table>

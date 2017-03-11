@@ -1,5 +1,6 @@
 class DaysController < ApplicationController
-
+  load_and_authorize_resource
+  
   def edit
     @day = Day.find(params[:id])
     @visit = Visit.where("visit_id = ?", @day.visit_id)

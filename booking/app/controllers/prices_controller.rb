@@ -1,5 +1,5 @@
 class PricesController < ApplicationController
-
+  load_and_authorize_resource
   def index
     @prices = Price.all
   end

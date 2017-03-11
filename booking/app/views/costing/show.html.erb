@@ -1,6 +1,8 @@
 
   <h2>Costs</h2>
-  <div><%= link_to "Edit Visit Details", visit_path(@visit) %></div>
+  <% if can? :update, Visit %>
+    <div><%= link_to "Edit Visit Details", visit_path(@visit) %></div>
+  <% end %>
   <h3><%= @visit.guest.name %></h3>
   <div class = "col-md-6">
   <table class = "table-condensed">
@@ -52,12 +54,18 @@
   </div>
 
   <div class = "col-md-6">
-    <div>Click on the date to add employee schedules</div>
+    <% if can? :update, Visit %>
+      <div>Click on the date to add employee schedules</div>
+    <% end %>
     <table class = "table-condensed table-bordered">
     <thead>
       <th>Date:</th>
       <% @visit.days.each do |day| %>
-        <th><%= link_to abbreviated_date(day.date), edit_hours_path(day) %></th>
+        <% if can? :update, Visit %>
+          <th><%= link_to abbreviated_date(day.date), edit_hours_path(day) %></th>
+        <% else %>
+          <th><%= abbreviated_date(day.date) %>
+        <% end %>
       <% end %>
       <th>Totals</th>
       <th>Price</th>

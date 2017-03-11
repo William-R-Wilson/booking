@@ -1,4 +1,5 @@
 class WorkTypesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @worktypes = WorkType.all

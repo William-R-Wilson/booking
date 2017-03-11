@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  load_and_authorize_resource
 
   def new
     @employee = Employee.new

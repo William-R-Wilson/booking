@@ -1,20 +1,23 @@
 <div class = "col-md-4 center col-md-offset-4">
-  <h2>Select Dates for Schedules to View</h2>
-  <%= form_tag("/schedules", method: "get") do %>
+  <% if can? :update, Schedule %>
+    <h2>Select Dates for Schedules to View</h2>
+    <%= form_tag("/schedules", method: "get") do %>
 
-    <div class = "form-group">Start Date:
-      <%= select_date Date.today, prefix: :start_date, with_css_classes: true %></div><br>
-    <div class = "form-group">End Date:
-      <%= select_date Date.today, prefix: :end_date, with_css_classes: true %></div><br>
+      <div class = "form-group">Start Date:
+        <%= select_date Date.today, prefix: :start_date, with_css_classes: true %></div><br>
+      <div class = "form-group">End Date:
+        <%= select_date Date.today, prefix: :end_date, with_css_classes: true %></div><br>
 
-    <div class="form-group">
-      <%= submit_tag("See Schedules", class: "btn btn-primary") %>
+      <div class="form-group">
+        <%= submit_tag("See Schedules", class: "btn btn-primary") %>
+      <% end %>
+
+    <h3>Or, pick an employee</h3>
     <% end %>
-
-  <h3>Or, pick an employee</h3>
-  <ul class = "list-group">
-    <% @employees.each do |e| %>
-    <li class = "list-group-item"><%= link_to e.full_name, by_employee_path(e.id) %></li>
-    <% end %>
-  </ul>
+    <h3>View Schedules for Employee</h3>
+    <ul class = "list-group">
+      <% @employees.each do |e| %>
+      <li class = "list-group-item"><%= link_to e.full_name, by_employee_path(e.id) %></li>
+      <% end %>
+    </ul>
 </div>
