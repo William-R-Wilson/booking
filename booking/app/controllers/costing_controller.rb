@@ -1,7 +1,6 @@
 class CostingController < ApplicationController
   #require 'visit_costing'
   #include VisitCosting
-  load_and_authorize_resource
 
   def show
     @visit = Visit.find(params[:id])
